@@ -1,0 +1,1432 @@
+{
+  "cases": [
+    {
+      "id": "gtr_01",
+      "title_for_teacher": "Студентка",
+      "visible_to_student": {
+        "age": 22,
+        "gender": "женщина",
+        "context": "Студентка 4 курса, чувствует постоянное напряжение и страх ошибки.",
+        "setting": "Первая консультация в вузовском психологическом центре",
+        "initial_request": "«Я постоянно переживаю, даже когда объективно всё нормально»",
+        "warning_to_student": "Склонна к самокритике и перфекционизму, важно не спешить с успокоением."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Генерализованное тревожное расстройство (ГТР) с лёгкими депрессивными чертами",
+        "differential_diagnosis": [
+          "Депрессивный эпизод",
+          "Расстройство адаптации",
+          "Смешанное тревожно-депрессивное расстройство"
+        ],
+        "goals_for_training": [
+          "Освоение навыков установления безопасного контакта с тревожным клиентом.",
+          "Развитие способности исследовать содержание тревожных мыслей, а не только их интенсивность.",
+          "Практика структурирования первой сессии при высокой фоновой тревоге."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Клиентка часто говорит о страхе «подвести» других, полезно исследовать её внутренние стандарты и ожидания."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.4,
+          "depressed_mood": 0.3,
+          "emotional_reactivity": 0.6,
+          "anhedonia": 0.2
+        },
+        "anxiety_domain": {
+          "generalized_anxiety": 0.9,
+          "anticipatory_anxiety": 0.9,
+          "somatic_anxiety": 0.7
+        },
+        "cognitive_domain": {
+          "worry_chains": 0.9,
+          "catastrophizing": 0.8,
+          "attention_impairment": 0.5
+        },
+        "behavior_domain": {
+          "avoidance": 0.4,
+          "safety_behaviors": 0.7,
+          "procrastination": 0.5
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.5,
+          "rejection_sensitivity": 0.6,
+          "attachment_style": "тревожно-амбивалентный",
+          "empathy": 0.8,
+          "people_pleasing": 0.7
+        },
+        "identity_domain": {
+          "identity_stability": 0.7,
+          "self_worth": 0.4,
+          "guilt_shame": 0.5
+        },
+        "physiology_domain": {
+          "sleep_dysregulation": 0.7,
+          "fatigue": 0.6,
+          "appetite_change": 0.3
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.2,
+        "antagonism": 0.1,
+        "disinhibition": 0.2,
+        "psychoticism": 0.0,
+        "description": "Перфекционистка, ориентирована на одобрение, склонна много думать и переживать о будущем."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.8,
+        "emotional_color": 0.6,
+        "avoidance_language": 0.3,
+        "self_reference_frequency": 0.7,
+        "reassurance_seeking": 0.8
+      },
+      "triggers": {
+        "performance_pressure": 0.9,
+        "uncertainty": 0.9,
+        "criticism": 0.7,
+        "health_topics": 0.6
+      },
+      "typical_phrases": [
+        "Мне всё время кажется, что я что-то упускаю.",
+        "Даже когда всё сделано, я думаю, что могла сделать лучше.",
+        "Я не могу просто отдохнуть, голова не выключается.",
+        "Вроде ничего страшного не происходит, но тревога не уходит."
+      ]
+    },
+    {
+      "id": "gtr_02",
+      "title_for_teacher": "Работающая мама",
+      "visible_to_student": {
+        "age": 35,
+        "gender": "женщина",
+        "context": "Работает в офисе, двое детей, жалуется на постоянные тревоги за семью и работу.",
+        "setting": "Консультация в частном центре",
+        "initial_request": "«Я всё время жду, что что-то случится с детьми или на работе»",
+        "warning_to_student": "Может обесценивать собственные потребности, фокусируясь только на заботе о других."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "ГТР, хроническое течение, эмоциональное выгорание",
+        "differential_diagnosis": [
+          "Депрессивное расстройство",
+          "Расстройство адаптации",
+          "Соматоформные расстройства"
+        ],
+        "goals_for_training": [
+          "Отработка навыка исследования распределения ответственности и границ.",
+          "Помощь студенту в удержании эмпатии при жалобах на «бесконечную нагрузку».",
+          "Поиск ресурсов и опор, а не только проблем."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Клиентка может говорить, что «жаловаться стыдно», важно видеть её усталость и нормализовать запрос."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.5,
+          "depressed_mood": 0.4,
+          "emotional_reactivity": 0.6
+        },
+        "anxiety_domain": {
+          "generalized_anxiety": 0.9,
+          "anticipatory_anxiety": 0.8,
+          "somatic_anxiety": 0.8
+        },
+        "cognitive_domain": {
+          "worry_chains": 0.9,
+          "catastrophizing": 0.7,
+          "attention_impairment": 0.5
+        },
+        "behavior_domain": {
+          "avoidance": 0.3,
+          "safety_behaviors": 0.7,
+          "over_responsibility": 0.9
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.6,
+          "rejection_sensitivity": 0.5,
+          "attachment_style": "надёжный с тревожными элементами",
+          "empathy": 0.9
+        },
+        "identity_domain": {
+          "identity_stability": 0.7,
+          "self_worth": 0.4,
+          "guilt_shame": 0.7
+        },
+        "physiology_domain": {
+          "sleep_dysregulation": 0.8,
+          "fatigue": 0.9,
+          "appetite_change": 0.4
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.8,
+        "detachment": 0.2,
+        "antagonism": 0.1,
+        "disinhibition": 0.2,
+        "psychoticism": 0.0,
+        "description": "Очень заботливая, привыкла «тащить всё», стыдится просить помощи."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.6,
+        "coherence": 0.8,
+        "emotional_color": 0.6,
+        "avoidance_language": 0.3,
+        "self_reference_frequency": 0.5
+      },
+      "triggers": {
+        "news_about_dangers": 0.9,
+        "work_deadlines": 0.8,
+        "children_health": 0.9
+      },
+      "typical_phrases": [
+        "Если я расслаблюсь, обязательно что-то случится.",
+        "Я не имею права «выпасть», все зависят от меня.",
+        "Сложно поверить, что всё будет нормально, если я не буду всё контролировать."
+      ]
+    },
+
+    {
+      "id": "panic_01",
+      "title_for_teacher": "Молодой мужчина",
+      "visible_to_student": {
+        "age": 29,
+        "gender": "мужчина",
+        "context": "Работает в офисе, несколько раз вызывал скорую из-за приступов.",
+        "setting": "Частная психологическая консультация",
+        "initial_request": "«Иногда внезапно накрывает: сердце колотится, кажется, что умираю»",
+        "warning_to_student": "Важно не обесценивать телесные симптомы и не брать на себя роль кардиолога."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Паническое расстройство с развивающейся агорафобией",
+        "differential_diagnosis": [
+          "Генерализованное тревожное расстройство",
+          "Депрессия с тревожными эпизодами",
+          "Соматические заболевания (исключены врачами)"
+        ],
+        "goals_for_training": [
+          "Освоение подробного расспроса о первых и последующих панических атаках.",
+          "Понимание роли избегания и предвосхищающей тревоги.",
+          "Практика психообразования о панике без обещаний «вылечить навсегда»."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Клиент верит, что проблема в сердце, важно мягко связывать телесное и психологическое, не споря напрямую."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.3,
+          "depressed_mood": 0.2,
+          "emotional_reactivity": 0.7
+        },
+        "anxiety_domain": {
+          "generalized_anxiety": 0.5,
+          "anticipatory_anxiety": 0.9,
+          "panic_susceptibility": 0.95,
+          "somatic_anxiety": 0.95
+        },
+        "cognitive_domain": {
+          "catastrophizing": 0.9,
+          "fear_of_dying": 0.9,
+          "fear_of_losing_control": 0.8
+        },
+        "behavior_domain": {
+          "avoidance": 0.7,
+          "safety_behaviors": 0.9,
+          "checking_body_signals": 0.9
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.5,
+          "rejection_sensitivity": 0.3,
+          "attachment_style": "избегающий с элементами тревоги",
+          "empathy": 0.6
+        },
+        "physiology_domain": {
+          "sleep_dysregulation": 0.5,
+          "fatigue": 0.5
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.6,
+        "detachment": 0.3,
+        "antagonism": 0.2,
+        "disinhibition": 0.2,
+        "psychoticism": 0.0,
+        "description": "Контролирующий, не любит выглядеть слабым, тревога воспринимается как слабость."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.5,
+        "coherence": 0.7,
+        "emotional_color": 0.7,
+        "avoidance_language": 0.2,
+        "somatic_focus": 0.9
+      },
+      "triggers": {
+        "public_transport": 0.9,
+        "being_alone_outside": 0.7,
+        "crowded_places": 0.8,
+        "health_topics": 0.9
+      },
+      "typical_phrases": [
+        "Я точно знаю, что в этот момент со мной что-то серьёзное.",
+        "Врачи говорят, что всё нормально, но ощущается иначе.",
+        "Я стал избегать метро и торговых центров.",
+        "Страшно, что это случится в людном месте и я опозорюсь."
+      ]
+    },
+    {
+      "id": "panic_02",
+      "title_for_teacher": "Молодая женщина",
+      "visible_to_student": {
+        "age": 24,
+        "gender": "женщина",
+        "context": "Недавно переехала в другой город, приступы начались после смены работы.",
+        "setting": "Онлайн-консультация",
+        "initial_request": "«Внезапно начинает кружиться голова, темнеет в глазах, боюсь, что упаду в обморок»",
+        "warning_to_student": "Есть привязка к стрессу переезда, важно учитывать контекст, а не только симптоматику."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Панические атаки на фоне стресса адаптации",
+        "differential_diagnosis": [
+          "ГТР",
+          "Агорафобия",
+          "Расстройство адаптации"
+        ],
+        "goals_for_training": [
+          "Отработка связи жизненных событий и паники.",
+          "Понимание роли избегания и безопасного поведения.",
+          "Практика выстраивания базы безопасности в текущей жизни."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Клиентка может связывать всё только с физиологией и усталостью, полезно деликатно расширять фокус."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.4,
+          "depressed_mood": 0.3,
+          "emotional_reactivity": 0.7
+        },
+        "anxiety_domain": {
+          "generalized_anxiety": 0.6,
+          "anticipatory_anxiety": 0.8,
+          "panic_susceptibility": 0.9,
+          "somatic_anxiety": 0.8
+        },
+        "cognitive_domain": {
+          "fear_of_losing_consciousness": 0.9,
+          "catastrophizing": 0.8
+        },
+        "behavior_domain": {
+          "avoidance": 0.6,
+          "safety_behaviors": 0.8
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.6,
+          "rejection_sensitivity": 0.5,
+          "attachment_style": "тревожно-амбивалентный"
+        },
+        "physiology_domain": {
+          "sleep_dysregulation": 0.6,
+          "fatigue": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.3,
+        "antagonism": 0.1,
+        "disinhibition": 0.3,
+        "psychoticism": 0.0,
+        "description": "Чувствительная, склонна к сомнениям, ищет опору в отношениях."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.7,
+        "emotional_color": 0.8,
+        "avoidance_language": 0.2
+      },
+      "triggers": {
+        "new_places": 0.9,
+        "crowds": 0.7,
+        "work_stress": 0.8
+      },
+      "typical_phrases": [
+        "Я боюсь, что упаду в обморок и никто не поможет.",
+        "С тех пор как переехала, тревоги стало намного больше.",
+        "Иногда страшно выходить из дома без кого-то рядом."
+      ]
+    },
+
+    {
+      "id": "okr_01",
+      "title_for_teacher": "Загрязнение",
+      "visible_to_student": {
+        "age": 32,
+        "gender": "женщина",
+        "context": "Работает в IT, боится загрязнения и инфекции, постоянно моет руки и дом.",
+        "setting": "Амбулаторная консультация",
+        "initial_request": "«Я понимаю, что это перебор, но если не помою, тревога зашкаливает»",
+        "warning_to_student": "Не подыгрывать ритуалам и не усиливать проверки."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Обсессивно-компульсивное расстройство (ОКР), контаминация",
+        "differential_diagnosis": [
+          "ГТР",
+          "Расстройство личности с обсессивными чертами",
+          "Депрессия с руминациями"
+        ],
+        "goals_for_training": [
+          "Различение обсессий и реальных рисков.",
+          "Отработка выдерживания тревоги клиента без мгновенного заверения.",
+          "Понимание динамики «мысль — тревога — ритуал — облегчение»."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Клиентка рационально понимает избыточность поведения, но эмоционально не выдерживает отказа от ритуалов."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.3,
+          "depressed_mood": 0.3,
+          "emotional_reactivity": 0.5
+        },
+        "anxiety_domain": {
+          "generalized_anxiety": 0.6,
+          "anticipatory_anxiety": 0.8,
+          "somatic_anxiety": 0.5
+        },
+        "cognitive_domain": {
+          "obsessive_thoughts": 0.95,
+          "intrusive_thoughts": 0.9,
+          "magical_thinking": 0.5,
+          "need_for_certainty": 0.9
+        },
+        "behavior_domain": {
+          "compulsivity": 0.95,
+          "washing_rituals": 0.9,
+          "checking_rituals": 0.3,
+          "avoidance": 0.6
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.6,
+          "rejection_sensitivity": 0.4,
+          "attachment_style": "надёжный с тревожностью"
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.6,
+        "detachment": 0.2,
+        "antagonism": 0.1,
+        "disinhibition": 0.1,
+        "psychoticism": 0.1,
+        "description": "Ответственная, аккуратная, боится «допустить ошибку» и причинить вред."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.9,
+        "emotional_color": 0.5,
+        "detail_orientation": 0.9
+      },
+      "triggers": {
+        "public_surfaces": 0.9,
+        "illness_news": 0.8,
+        "visitors_at_home": 0.8
+      },
+      "typical_phrases": [
+        "Я могу по полчаса мыть руки, пока не появится чувство, что «достаточно».",
+        "Я понимаю, что шансы заражения маленькие, но тревога очень сильная.",
+        "Я часто отказываюсь от встреч, если кажется, что там будет грязно."
+      ]
+    },
+    {
+      "id": "okr_02",
+      "title_for_teacher": "Проверки",
+      "visible_to_student": {
+        "age": 28,
+        "gender": "мужчина",
+        "context": "Инженер, тратит много времени на проверки замков и техники.",
+        "setting": "Психологическая консультация",
+        "initial_request": "«Я по десять раз проверяю дверь и плиту, иначе не могу уйти»",
+        "warning_to_student": "Важно не превращаться в ещё один источник заверения «всё нормально»."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "ОКР, доминируют проверки и ответственность за вред",
+        "differential_diagnosis": [
+          "ГТР",
+          "Перфекционизм без ОКР",
+          "Расстройство личности с обсессивно-компульсивными чертами"
+        ],
+        "goals_for_training": [
+          "Исследование связи между ощущением ответственности и ритуалами.",
+          "Отработка устойчивого неуспокаивающего стиля.",
+          "Понимание, как ритуалы мешают повседневному функционированию."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Клиент может оправдывать проверки «здравым смыслом», важно мягко подводить к теме ценой времени и напряжения."
+      },
+      "symptom_profile": {
+        "anxiety_domain": {
+          "anticipatory_anxiety": 0.8
+        },
+        "cognitive_domain": {
+          "obsessive_thoughts": 0.9,
+          "intrusive_thoughts": 0.8,
+          "responsibility_for_harm": 0.9
+        },
+        "behavior_domain": {
+          "compulsivity": 0.9,
+          "checking_rituals": 0.95,
+          "avoidance": 0.4
+        },
+        "identity_domain": {
+          "self_worth": 0.6,
+          "guilt_shame": 0.6
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.5,
+        "detachment": 0.3,
+        "antagonism": 0.1,
+        "disinhibition": 0.1,
+        "psychoticism": 0.1,
+        "description": "Склонен к контролю и ответственности, боится сделать что-то «неправильно»."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.6,
+        "coherence": 0.8,
+        "emotional_color": 0.5
+      },
+      "triggers": {
+        "leaving_home": 0.9,
+        "using_gas_or_iron": 0.9,
+        "being_last_to_leave": 0.8
+      },
+      "typical_phrases": [
+        "Если я не проверю, то потом буду думать об этом весь день.",
+        "Иногда возвращаюсь домой специально, чтобы убедиться, что всё выключено.",
+        "Мне кажется, что если что-то случится, это будет на моей совести."
+      ]
+    },
+
+    {
+      "id": "ptsd_01",
+      "title_for_teacher": "После ДТП",
+      "visible_to_student": {
+        "age": 34,
+        "gender": "мужчина",
+        "context": "Пережил серьёзное ДТП год назад, избегает машин, мучают сны и воспоминания.",
+        "setting": "Городская психологическая служба",
+        "initial_request": "«Ночью снится авария, а днём избегаю любых дорог»",
+        "warning_to_student": "Осторожность при расспросе о деталях травмы, важно не ретравматизировать."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Посттравматическое стрессовое расстройство (ПТСР)",
+        "differential_diagnosis": [
+          "Расстройство адаптации",
+          "Депрессивное расстройство",
+          "Тревожное расстройство"
+        ],
+        "goals_for_training": [
+          "Развитие навыков работы с избеганием и гипервозбуждением.",
+          "Умение выдерживать паузы и эмоциональные реакции клиента.",
+          "Отработка мягкого входа и выхода из темы травмы."
+        ],
+        "risk_level": "умеренный",
+        "notes_for_teacher": "Клиент может «застревать» в описании деталей или уходить в отстранённость."
+      },
+      "symptom_profile": {
+        "trauma_domain": {
+          "trauma_intrusions": 0.95,
+          "avoidance_trauma_cues": 0.9,
+          "hypervigilance": 0.8,
+          "startle_reactivity": 0.8
+        },
+        "affective_regulation": {
+          "emotional_reactivity": 0.8,
+          "depressed_mood": 0.5
+        },
+        "physiology_domain": {
+          "sleep_dysregulation": 0.9,
+          "nightmares": 0.9,
+          "fatigue": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.6,
+        "antagonism": 0.2,
+        "disinhibition": 0.2,
+        "psychoticism": 0.1,
+        "description": "Сдержанный, после травмы стал ещё более закрытым и настороженным."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.4,
+        "coherence": 0.7,
+        "emotional_color": 0.6,
+        "avoidance_language": 0.7
+      },
+      "triggers": {
+        "cars": 0.9,
+        "sirens": 0.8,
+        "night_time": 0.7
+      },
+      "typical_phrases": [
+        "Я постоянно прокручиваю этот момент, хотя хочу забыть.",
+        "Я чувствую себя не тем, кем был до аварии.",
+        "Люди говорят: «радуйся, что живой», а я как будто застрял там."
+      ]
+    },
+    {
+      "id": "ptsd_02",
+      "title_for_teacher": "После насилия",
+      "visible_to_student": {
+        "age": 25,
+        "gender": "женщина",
+        "context": "Пережила насилие в близких отношениях, обращается спустя два года после разрыва.",
+        "setting": "Кризисный центр",
+        "initial_request": "«Пыталась забыть, но до сих пор боюсь близости и конфликтов»",
+        "warning_to_student": "Высокая чувствительность к теме доверия и границ, важно не торопить с раскрытием деталей."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "ПТСР, вероятно комплексный вариант",
+        "differential_diagnosis": [
+          "ПРЛ",
+          "Депрессивное расстройство",
+          "Социальное тревожное расстройство"
+        ],
+        "goals_for_training": [
+          "Чувствительность к теме насилия и стыда.",
+          "Отработка установления границ и контроля клиента над тем, чем делиться.",
+          "Понимание влияния травмы на доверие и близость."
+        ],
+        "risk_level": "умеренный",
+        "notes_for_teacher": "Клиентка может винить себя, важно мягко нормализовать и разделять ответственность."
+      },
+      "symptom_profile": {
+        "trauma_domain": {
+          "trauma_intrusions": 0.8,
+          "avoidance_trauma_cues": 0.9,
+          "hypervigilance": 0.8
+        },
+        "affective_regulation": {
+          "mood_instability": 0.5,
+          "depressed_mood": 0.7,
+          "emotional_reactivity": 0.7
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.3,
+          "rejection_sensitivity": 0.8,
+          "attachment_style": "страшно-избегающий"
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.8,
+        "detachment": 0.7,
+        "antagonism": 0.1,
+        "disinhibition": 0.2,
+        "psychoticism": 0.1,
+        "description": "Опыт насилия усилил чувство небезопасности в отношениях, но потребность в близости сохраняется."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.5,
+        "coherence": 0.7,
+        "emotional_color": 0.7,
+        "avoidance_language": 0.8
+      },
+      "triggers": {
+        "raised_voice": 0.9,
+        "arguments": 0.8,
+        "physical_proximity": 0.7
+      },
+      "typical_phrases": [
+        "Я вроде понимаю, что сейчас я в безопасности, но тело реагирует как тогда.",
+        "Мне сложно доверять, особенно если человек злится или повышает голос.",
+        "Я часто думаю, что сама виновата, что всё так вышло."
+      ]
+    },
+
+    {
+      "id": "prl_01",
+      "title_for_teacher": "Эмоциии",
+      "visible_to_student": {
+        "age": 22,
+        "gender": "женщина",
+        "context": "Студентка, часто меняет партнёров, жалуется на пустоту и резкие перепады настроения.",
+        "setting": "Психологический центр при университете",
+        "initial_request": "«То идеализирую людей, то ненавижу, и так со всеми»",
+        "warning_to_student": "Возможны резкие смены отношения к терапевту, важно выдерживать."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Пограничное расстройство личности (ПРЛ)",
+        "differential_diagnosis": [
+          "Биполярное расстройство II типа",
+          "Комплексный ПТСР",
+          "Смешанное расстройство личности"
+        ],
+        "goals_for_training": [
+          "Научиться выдерживать интенсивные эмоции клиента без поспешных интерпретаций.",
+          "Исследовать страх отвержения и нестабильность привязанности.",
+          "Отработать реакцию на возможное обесценивание терапевта."
+        ],
+        "risk_level": "умеренный",
+        "notes_for_teacher": "В прошлом эпизод самоповреждающего поведения, сейчас только мысли, важно наблюдать, не детализируя способы."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.95,
+          "depressed_mood": 0.6,
+          "emotional_reactivity": 0.95,
+          "chronic_emptiness": 0.9
+        },
+        "anxiety_domain": {
+          "abandonment_anxiety": 0.95
+        },
+        "cognitive_domain": {
+          "splitting_thinking": 0.9,
+          "identity_diffusion": 0.8,
+          "paranoid_suspicion": 0.4
+        },
+        "behavior_domain": {
+          "impulsivity": 0.8,
+          "self_damaging_behaviors": 0.5,
+          "anger_outbursts": 0.7
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.3,
+          "rejection_sensitivity": 0.95,
+          "attachment_style": "страшно-зависимый",
+          "idealization_devaluation": 0.9
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.9,
+        "detachment": 0.3,
+        "antagonism": 0.4,
+        "disinhibition": 0.8,
+        "psychoticism": 0.4,
+        "description": "Очень чувствительна к дистанции, боится быть брошенной, крайности в отношениях."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.8,
+        "coherence": 0.6,
+        "emotional_color": 0.95
+      },
+      "triggers": {
+        "perceived_rejection": 0.95,
+        "changes_in_schedule": 0.8,
+        "boundaries": 0.7
+      },
+      "typical_phrases": [
+        "Я или цепляюсь за человека, или сразу отталкиваю.",
+        "Иногда вообще не понимаю, какая я и что хочу.",
+        "Если мне не отвечают долго, я уверена, что меня бросают."
+      ]
+    },
+    {
+      "id": "prl_02",
+      "title_for_teacher": "Фантазии",
+      "visible_to_student": {
+        "age": 26,
+        "gender": "мужчина",
+        "context": "Работает, периодически рвёт отношения, жалуется на вспышки гнева и пустоту.",
+        "setting": "Частная практика",
+        "initial_request": "«То ничего не чувствую, то хочется всё разнести»",
+        "warning_to_student": "Возможны вскользь упоминания про «не жить» — важно аккуратно расспрашивать без детализации методов."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "ПРЛ, выраженная дисрегуляция аффекта",
+        "differential_diagnosis": [
+          "Биполярное расстройство",
+          "Нарциссическое расстройство личности",
+          "Злоупотребление веществами"
+        ],
+        "goals_for_training": [
+          "Отработка спокойного расспроса об аутоагрессивных мыслях.",
+          "Освоение навыка выдерживания гнева клиента, не переходя в защиту.",
+          "Понимание связи между чувством пустоты и импульсивностью."
+        ],
+        "risk_level": "умеренный",
+        "notes_for_teacher": "Клиент может демонстративно говорить о «крайних мерах», важно держать фокус на чувствах и потребностях."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.9,
+          "depressed_mood": 0.6,
+          "emotional_reactivity": 0.9,
+          "chronic_emptiness": 0.8
+        },
+        "behavior_domain": {
+          "impulsivity": 0.9,
+          "anger_outbursts": 0.8,
+          "self_damaging_behaviors": 0.6
+        },
+        "interpersonal_domain": {
+          "rejection_sensitivity": 0.9,
+          "trust_capacity": 0.4
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.8,
+        "detachment": 0.4,
+        "antagonism": 0.5,
+        "disinhibition": 0.9,
+        "psychoticism": 0.3,
+        "description": "Сложности с контролем импульсов, конфликт между желанием близости и страхом быть отвергнутым."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.6,
+        "emotional_color": 0.9
+      },
+      "triggers": {
+        "jealousy": 0.9,
+        "perceived_injustice": 0.8
+      },
+      "typical_phrases": [
+        "Когда кто-то от меня уходит, кажется, что я сам себя уничтожаю.",
+        "Я могу сказать такое в злости, о чём потом сильно сожалею.",
+        "Иногда думаю, что всем было бы легче без меня, но сам я ничего не делаю."
+      ]
+    },
+
+    {
+      "id": "nrl_01",
+      "title_for_teacher": "Уязвимый тип",
+      "visible_to_student": {
+        "age": 27,
+        "gender": "мужчина",
+        "context": "Фрилансер, чувствует, что его недооценивают, болезненно реагирует на критику.",
+        "setting": "Частная практика",
+        "initial_request": "«Меня окружают некомпетентные люди, и это тормозит мой потенциал»",
+        "warning_to_student": "Возможны обесценивающие комментарии в адрес терапевта."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Нарциссическое расстройство личности (НРЛ), уязвимый тип",
+        "differential_diagnosis": [
+          "ПРЛ",
+          "Антисоциальные черты",
+          "Нормативный перфекционизм"
+        ],
+        "goals_for_training": [
+          "Навык выдерживания обесценивания и завышенных требований.",
+          "Понимание динамики стыда и уязвимости за грандиозностью.",
+          "Развитие способности видеть за жалобами страх несостоятельности."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Клиент может проверять компетентность студента, важно удерживать профессиональную позицию и интерес."
+      },
+      "symptom_profile": {
+        "cognitive_domain": {
+          "grandiose_beliefs": 0.8,
+          "envy_others": 0.7,
+          "externalization_of_blame": 0.9
+        },
+        "interpersonal_domain": {
+          "need_for_admiration": 0.9,
+          "sense_of_entitlement": 0.8,
+          "empathy": 0.3,
+          "rejection_sensitivity": 0.8
+        },
+        "identity_domain": {
+          "fragile_self_esteem": 0.9,
+          "guilt_shame": 0.8
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.5,
+        "antagonism": 0.8,
+        "disinhibition": 0.4,
+        "psychoticism": 0.2,
+        "description": "Снаружи демонстрирует уверенность, внутри боится оказаться «обычным» и незначительным."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.8,
+        "emotional_color": 0.6,
+        "self_reference_frequency": 0.9,
+        "blame_language": 0.8
+      },
+      "triggers": {
+        "criticism": 0.95,
+        "comparison_with_others": 0.9,
+        "lack_of_recognition": 0.9
+      },
+      "typical_phrases": [
+        "Мне сложно общаться с людьми, которые не дотягивают до моего уровня.",
+        "Когда мне указывают на ошибки, ощущение, как будто меня полностью обесценили.",
+        "Иногда кажется, что никто не видит, насколько я на самом деле перспективен."
+      ]
+    },
+    {
+      "id": "nrl_02",
+      "title_for_teacher": "Открытый тип",
+      "visible_to_student": {
+        "age": 33,
+        "gender": "женщина",
+        "context": "Успешная в карьере, жалуется, что партнёры «не дотягивают до её уровня».",
+        "setting": "Частное консультирование",
+        "initial_request": "«Я постоянно разочаровываюсь в людях, вокруг мало достойных»",
+        "warning_to_student": "Может пытаться доминировать в разговоре, важно сохранять структуру."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "НРЛ, более явный грандиозный компонент",
+        "differential_diagnosis": [
+          "Антисоциальные черты",
+          "Нормативная высокая самооценка",
+          "ПРЛ с нарциссическими защитами"
+        ],
+        "goals_for_training": [
+          "Столкновение с обесцениванием без ухода в ответную защиту.",
+          "Поиск за грандиозностью тем стыда и одиночества.",
+          "Навык удерживать контакт, когда клиентка мало интересуется терапевтом как личностью."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "При обсуждении уязвимых тем может быстро уходить в сарказм."
+      },
+      "symptom_profile": {
+        "interpersonal_domain": {
+          "need_for_admiration": 0.95,
+          "sense_of_entitlement": 0.9,
+          "empathy": 0.2
+        },
+        "cognitive_domain": {
+          "grandiose_beliefs": 0.9
+        },
+        "identity_domain": {
+          "self_worth": 0.8,
+          "fragile_self_esteem": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.6,
+        "detachment": 0.4,
+        "antagonism": 0.9,
+        "disinhibition": 0.5,
+        "psychoticism": 0.2,
+        "description": "Яркая, харизматичная, склонна к доминированию и критике других."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.9,
+        "coherence": 0.8,
+        "emotional_color": 0.7,
+        "blame_language": 0.9
+      },
+      "triggers": {
+        "being_ignored": 0.9,
+        "non_compliance": 0.8
+      },
+      "typical_phrases": [
+        "Я вкладываюсь в людей больше, чем они заслуживают.",
+        "Если кто-то не умеет ценить меня, это его проблема.",
+        "Редко встречаю тех, кто действительно на моём уровне."
+      ]
+    },
+
+    {
+      "id": "sdvg_01",
+      "title_for_teacher": "Взрослая женщина",
+      "visible_to_student": {
+        "age": 26,
+        "gender": "женщина",
+        "context": "Работает в креативной сфере, жалуется на забывчивость и трудности с организацией.",
+        "setting": "Психологическое консультирование",
+        "initial_request": "«Я всё время всё теряю, опаздываю и не могу доделать дела»",
+        "warning_to_student": "Важно не сводить к «лени», а видеть реальные функциональные трудности."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "СДВГ, преимущественно невнимательный тип",
+        "differential_diagnosis": [
+          "Депрессия",
+          "Тревожное расстройство",
+          "Расстройства личности"
+        ],
+        "goals_for_training": [
+          "Фокус на конкретных примерах нарушений внимания и планирования.",
+          "Отработка нормализирующей, не осуждающей позиции.",
+          "Различение СДВГ и банальной прокрастинации."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Использует юмор для защиты, может обесценивать свои трудности."
+      },
+      "symptom_profile": {
+        "cognitive_domain": {
+          "attention_impairment": 0.9,
+          "distractibility": 0.9,
+          "working_memory_issues": 0.8,
+          "time_blindness": 0.8
+        },
+        "behavior_domain": {
+          "disorganization": 0.9,
+          "hyperactivity_restlessness": 0.4,
+          "procrastination": 0.8
+        },
+        "identity_domain": {
+          "self_worth": 0.4,
+          "guilt_shame": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.5,
+        "detachment": 0.2,
+        "antagonism": 0.2,
+        "disinhibition": 0.7,
+        "psychoticism": 0.0,
+        "description": "Энергичная, творческая, быстро загорается, но трудно держать фокус."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.9,
+        "coherence": 0.6,
+        "emotional_color": 0.7,
+        "topic_shifting": 0.9
+      },
+      "triggers": {
+        "boring_tasks": 0.9,
+        "long_meetings": 0.8
+      },
+      "typical_phrases": [
+        "У меня миллион идей, но всё валится на стадии реализации.",
+        "Постоянно забываю важные вещи и потом ужасно стыдно.",
+        "Я могу суперсфокусироваться на чём-то интересном и полностью провалить всё остальное."
+      ]
+    },
+    {
+      "id": "sdvg_02",
+      "title_for_teacher": "Молодой мужчина",
+      "visible_to_student": {
+        "age": 20,
+        "gender": "мужчина",
+        "context": "Студент, жалуется на невозможность сидеть на парах и концентрироваться.",
+        "setting": "Университетская служба",
+        "initial_request": "«Я сижу на лекции и через пять минут улетаю мыслями»",
+        "warning_to_student": "Может быть защитный юмор, важно не стать «вторым взрослым, который ругает»."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "СДВГ, комбинированный тип",
+        "differential_diagnosis": [
+          "Расстройства поведения",
+          "Тревожное расстройство",
+          "Нормативная подростковая импульсивность"
+        ],
+        "goals_for_training": [
+          "Различение симптомов СДВГ и «просто неусидчивости».",
+          "Понимание влияния СДВГ на учебу и самооценку.",
+          "Создание пространства, где клиент не чувствует себя «ленивым»."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Может говорить, что «ему просто лень», но за этим часто скрывается стыд."
+      },
+      "symptom_profile": {
+        "cognitive_domain": {
+          "attention_impairment": 0.8,
+          "distractibility": 0.9
+        },
+        "behavior_domain": {
+          "hyperactivity_restlessness": 0.9,
+          "impulsivity": 0.7,
+          "disorganization": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.4,
+        "detachment": 0.3,
+        "antagonism": 0.3,
+        "disinhibition": 0.8,
+        "psychoticism": 0.0,
+        "description": "Живой, шутливый, но с ощущением, что «вечно что-то не так»."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.8,
+        "coherence": 0.6,
+        "emotional_color": 0.6
+      },
+      "triggers": {
+        "long_lectures": 0.9,
+        "repetitive_tasks": 0.8
+      },
+      "typical_phrases": [
+        "Сколько бы я ни старался, всё равно отвлекаюсь.",
+        "Преподы думают, что мне всё равно, а я реально стараюсь.",
+        "Домашку делаю в последнюю ночь, хотя обещаю себе начинать раньше."
+      ]
+    },
+
+    {
+      "id": "ras_01",
+      "title_for_teacher": "Взрослый мужчина",
+      "visible_to_student": {
+        "age": 21,
+        "gender": "мужчина",
+        "context": "Студент, хорошо учится, но избегает контактов и быстро устает от общения.",
+        "setting": "Университетская психологическая служба",
+        "initial_request": "«Я не понимаю, как общаться с людьми, и устаю от этого»",
+        "warning_to_student": "Важно говорить ясно и структурированно, избегать двойных смыслов."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "РАС без интеллектуального дефицита",
+        "differential_diagnosis": [
+          "Социальное тревожное расстройство",
+          "СДВГ",
+          "Шизотипическое расстройство личности"
+        ],
+        "goals_for_training": [
+          "Адаптировать стиль речи к особенностям РАС.",
+          "Понимать роль сенсорной перегрузки.",
+          "Отрабатывать конкретные, предсказуемые формулировки вопросов."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Может казаться холодным или равнодушным, но внутри испытывает напряжение."
+      },
+      "symptom_profile": {
+        "cognitive_domain": {
+          "detail_focus": 0.9,
+          "theory_of_mind_difficulty": 0.7,
+          "rigid_thinking": 0.7
+        },
+        "behavior_domain": {
+          "need_for_routines": 0.8,
+          "sensory_avoidance": 0.8
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.5,
+          "attachment_style": "скорее надёжный, но ограниченный круг общения",
+          "empathy_cognitive": 0.4,
+          "empathy_affective": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.4,
+        "detachment": 0.6,
+        "antagonism": 0.1,
+        "disinhibition": 0.2,
+        "psychoticism": 0.1,
+        "description": "Лаконичный, прямой, ценит честность и предсказуемость."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.4,
+        "coherence": 0.9,
+        "emotional_color": 0.3,
+        "literalness": 0.9
+      },
+      "triggers": {
+        "sudden_changes": 0.9,
+        "loud_noises": 0.8,
+        "crowds": 0.8
+      },
+      "typical_phrases": [
+        "Я часто не понимаю, чего от меня ждут в компании людей.",
+        "Когда слишком шумно, хочется просто уйти.",
+        "Мне проще, когда есть чёткие правила и сценарии общения."
+      ]
+    },
+    {
+      "id": "ras_02",
+      "title_for_teacher": "Молодая женщина",
+      "visible_to_student": {
+        "age": 24,
+        "gender": "женщина",
+        "context": "Интересуется психообразованием, недавно узнала о РАС, чувствует себя «не такой».",
+        "setting": "Онлайн-консультация",
+        "initial_request": "«Мне сложно понимать намёки и поддерживать small talk»",
+        "warning_to_student": "Важно не сводить всё к диагнозу, учитывать личность."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Подозрение на РАС, требуется психиатрическая оценка",
+        "differential_diagnosis": [
+          "Социальная тревога",
+          "Интровертированный темперамент",
+          "Шизоидные черты"
+        ],
+        "goals_for_training": [
+          "Понимать границу компетенций психолога и психиатра.",
+          "Отработать бережное обсуждение темы «ярлыков» и идентичности.",
+          "Развивать уважение к особенностям клиента."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Клиентка может использовать интернет-термины, важно не спорить, а исследовать опыт."
+      },
+      "symptom_profile": {
+        "interpersonal_domain": {
+          "feeling_different": 0.9,
+          "small_talk_difficulty": 0.8
+        },
+        "behavior_domain": {
+          "special_interests": 0.8,
+          "sensory_sensitivity": 0.8
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.5,
+        "detachment": 0.5,
+        "antagonism": 0.1,
+        "disinhibition": 0.3,
+        "psychoticism": 0.1,
+        "description": "Интеллектуально любознательная, склонна анализировать себя, ощущает отличие от «нормы»."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.9,
+        "emotional_color": 0.4
+      },
+      "triggers": {
+        "unstructured_social_events": 0.8
+      },
+      "typical_phrases": [
+        "Я чувствую, что говорю «неправильно», но не понимаю, как правильно.",
+        "После общения мне нужно долго восстанавливаться.",
+        "В интернете я нашла много описаний РАС, которые на меня похожи."
+      ]
+    },
+
+    {
+      "id": "shizo_01",
+      "title_for_teacher": "Ремиссия",
+      "visible_to_student": {
+        "age": 31,
+        "gender": "мужчина",
+        "context": "Стоит на учёте, принимает препараты, жалуется на недоверие к людям и странные ощущения.",
+        "setting": "Амбулаторная помощь при ПНД",
+        "initial_request": "«Иногда кажется, что за мной наблюдают, хотя я понимаю, что это может быть в голове»",
+        "warning_to_student": "Нельзя спорить с переживаниями, важно мягко исследовать."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Шизофрения, эпизод в анамнезе, в ремиссии",
+        "differential_diagnosis": [
+          "Шизотипическое расстройство",
+          "Сильное тревожное расстройство с дереализацией"
+        ],
+        "goals_for_training": [
+          "Практика неосуждающего интереса к психотическому опыту.",
+          "Навык опоры на реальность без прямой конфронтации.",
+          "Учитывание усталости и когнитивных трудностей."
+        ],
+        "risk_level": "умеренный",
+        "notes_for_teacher": "Может быть чувствителен к намёкам на «ненормальность»."
+      },
+      "symptom_profile": {
+        "psychotic_domain": {
+          "hallucination_proneness": 0.5,
+          "delusional_thinking": 0.6,
+          "reality_testing_impairment": 0.5
+        },
+        "cognitive_domain": {
+          "ideas_of_reference": 0.7,
+          "mild_paranoia": 0.7,
+          "thought_disorganization": 0.4
+        },
+        "interpersonal_domain": {
+          "social_withdrawal": 0.7,
+          "trust_capacity": 0.3
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.6,
+        "detachment": 0.8,
+        "antagonism": 0.2,
+        "disinhibition": 0.2,
+        "psychoticism": 0.7,
+        "description": "Замкнутый, настороженный, старается контролировать речь, чтобы не выглядеть странным."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.5,
+        "coherence": 0.6,
+        "emotional_color": 0.4
+      },
+      "triggers": {
+        "stress": 0.8,
+        "sleep_loss": 0.8,
+        "crowds": 0.6
+      },
+      "typical_phrases": [
+        "Иногда кажется, что люди переглядываются, когда я захожу.",
+        "Я понимаю, что это может быть просто мои мысли, но ощущается реально.",
+        "После последнего обострения я стал более осторожным в общении."
+      ]
+    },
+    {
+      "id": "shizo_02",
+      "title_for_teacher": "Молодая женщина",
+      "visible_to_student": {
+        "age": 23,
+        "gender": "женщина",
+        "context": "Недавно выписана из стационара, сейчас стабилизирована, остаются странные ощущения.",
+        "setting": "Амбулаторная поддерживающая терапия",
+        "initial_request": "«Иногда мне кажется, что мысли как будто не совсем мои»",
+        "warning_to_student": "Важно не пугаться необычных формулировок, поддерживать контакт и опору."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Шизофрения, первый эпизод, фаза восстановления",
+        "differential_diagnosis": [
+          "Шизоаффективное расстройство",
+          "Тяжёлое аффективное расстройство с психотическими симптомами"
+        ],
+        "goals_for_training": [
+          "Навык работы с уязвимостью после психотического эпизода.",
+          "Чувствительность к теме стигмы и самоотношения.",
+          "Построение поддерживающих, не патологизирующих формулировок."
+        ],
+        "risk_level": "умеренный",
+        "notes_for_teacher": "Клиентка может стыдиться своего диагноза, важно избегать ярлыков."
+      },
+      "symptom_profile": {
+        "psychotic_domain": {
+          "hallucination_proneness": 0.4,
+          "delusional_thinking": 0.4,
+          "reality_testing_impairment": 0.4
+        },
+        "affective_regulation": {
+          "flattened_affect": 0.4,
+          "depressed_mood": 0.5
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.7,
+        "antagonism": 0.1,
+        "disinhibition": 0.2,
+        "psychoticism": 0.6,
+        "description": "Застенчивая, чувствительная, переживает из-за своего диагноза и возможного отношения людей."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.4,
+        "coherence": 0.7,
+        "emotional_color": 0.5
+      },
+      "triggers": {
+        "social_stress": 0.7,
+        "overload": 0.7
+      },
+      "typical_phrases": [
+        "Иногда сложно отличить, где просто мысли, а где что-то странное.",
+        "Боюсь, что если люди узнают диагноз, будут относиться иначе.",
+        "Стараюсь не перегружать себя, но чувствую себя оторванной от других."
+      ]
+    },
+
+    {
+      "id": "aggr_01",
+      "title_for_teacher": "Мужчина",
+      "visible_to_student": {
+        "age": 30,
+        "gender": "мужчина",
+        "context": "Живёт с партнёршей, жалуется на «срывы» и чувство стыда после них.",
+        "setting": "Психологическая консультация по просьбе партнёрши",
+        "initial_request": "«Иногда как будто срывает крышу, а потом стыдно»",
+        "warning_to_student": "Важно не занимать обвиняющую позицию, исследовать."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Импульсивные вспышки агрессии (интермиттирующее взрывное расстройство — под вопросом)",
+        "differential_diagnosis": [
+          "ПРЛ",
+          "НРЛ",
+          "Злоупотребление веществами"
+        ],
+        "goals_for_training": [
+          "Исследование триггеров и ранних признаков гнева.",
+          "Разделение ответственности за поведение и сочувствия к чувствам.",
+          "Работа с чувством стыда после вспышек."
+        ],
+        "risk_level": "умеренный",
+        "notes_for_teacher": "Есть эпизоды бросания предметов, без целенаправленного физического вреда другим."
+      },
+      "symptom_profile": {
+        "behavior_domain": {
+          "aggression": 0.9,
+          "impulsivity": 0.8,
+          "verbal_outbursts": 0.9,
+          "object_throwing": 0.6
+        },
+        "affective_regulation": {
+          "emotional_reactivity": 0.9,
+          "mood_instability": 0.7
+        },
+        "identity_domain": {
+          "guilt_shame": 0.8,
+          "self_worth": 0.4
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.3,
+        "antagonism": 0.6,
+        "disinhibition": 0.7,
+        "psychoticism": 0.1,
+        "description": "Импульсивный, горячий, после вспышек сильно стыдится своих слов и поступков."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.6,
+        "coherence": 0.7,
+        "emotional_color": 0.9
+      },
+      "triggers": {
+        "perceived_disrespect": 0.9,
+        "feeling_ignored": 0.8,
+        "criticism": 0.8
+      },
+      "typical_phrases": [
+        "В моменте я как будто не контролирую, а потом думаю: зачем я так.",
+        "Не хочу быть похожим на отца, но иногда веду себя так же.",
+        "Партнёрша боится моих вспышек, и мне тоже страшно, что я могу наговорить лишнего."
+      ]
+    },
+    {
+      "id": "aggr_02",
+      "title_for_teacher": "Женщина",
+      "visible_to_student": {
+        "age": 27,
+        "gender": "женщина",
+        "context": "Жалуется на резкие словесные вспышки в отношениях и чувство вины после.",
+        "setting": "Частная консультация",
+        "initial_request": "«Когда меня задевают, я говорю ужасные вещи, а потом очень стыдно»",
+        "warning_to_student": "Важно не подыгрывать самобичеванию, а исследовать динамику."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Эпизодическая дисрегуляция гнева на фоне эмоциональной уязвимости",
+        "differential_diagnosis": [
+          "ПРЛ",
+          "ПТСР",
+          "Нормативные реакции при стрессовых условиях"
+        ],
+        "goals_for_training": [
+          "Различение нормального гнева и дезадаптивных проявлений.",
+          "Понимание, как ранний опыт влияет на текущее выражение агрессии.",
+          "Навык сострадательной позиции без оправдания агрессии."
+        ],
+        "risk_level": "низкий",
+        "notes_for_teacher": "Часто после вспышек следует период самокритики и попыток «загладить»."
+      },
+      "symptom_profile": {
+        "behavior_domain": {
+          "verbal_outbursts": 0.9,
+          "impulsivity": 0.7
+        },
+        "affective_regulation": {
+          "emotional_reactivity": 0.8
+        },
+        "identity_domain": {
+          "guilt_shame": 0.9
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.8,
+        "detachment": 0.3,
+        "antagonism": 0.5,
+        "disinhibition": 0.6,
+        "psychoticism": 0.1,
+        "description": "Чувствительна к несправедливости, может резко реагировать, но потом сильно переживает."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.7,
+        "emotional_color": 0.9
+      },
+      "triggers": {
+        "feeling_unfairly_accused": 0.9,
+        "being_ignored": 0.8
+      },
+      "typical_phrases": [
+        "Я говорю то, о чём даже думать стыдно.",
+        "Потом стараюсь всё исправить, но осадок остаётся у всех.",
+        "Боюсь, что в какой-то момент меня просто перестанут терпеть."
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+
+# Virtual environments
+venv/
+.venv/
+
+# Env files
+.env
+
+# Runtime data
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+
+# Local backup copies
+*копия*.py

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <title>Виртуальный пациент — учебный симулятор</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>Виртуальный пациент</h1>
+      <p class="subtitle">Учебный симулятор для студентов-психологов</p>
+    </header>
+
+    <section class="controls">
+      <label for="caseSelect">Выберите кейс:</label>
+      <select id="caseSelect"></select>
+      <button id="newSessionBtn">Новая сессия</button>
+
+      <label class="teacher-toggle">
+        <input type="checkbox" id="teacherModeToggle" />
+        Режим преподавателя
+      </label>
+    </section>
+
+    <section class="case-info" id="caseInfo"></section>
+
+    <section class="teacher-panel" id="teacherPanel" style="display:none;">
+      <h2>Режим преподавателя</h2>
+      <div id="teacherCase"></div>
+      <div id="teacherSession"></div>
+      <div id="teacherProgress"></div>
+      <button id="refreshTeacherSessionBtn">Обновить ход сессии</button>
+    </section>
+
+    <section class="chat">
+      <div id="chatWindow" class="chat-window"></div>
+      <div class="chat-input">
+        <textarea id="messageInput" rows="2" placeholder="Напишите свой вопрос пациенту..."></textarea>
+        <button id="sendBtn">Отправить</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>Только для учебных целей. Не для самодиагностики и лечения.</p>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
