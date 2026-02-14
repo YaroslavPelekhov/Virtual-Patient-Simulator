@@ -1,7 +1,8 @@
 import os
-import io
 import random
 import re
+import time
+import uuid
 from typing import Dict, Any, List, Optional
 
 import requests
@@ -22,20 +23,22 @@ from telegram.ext import (
     filters,
 )
 
-from openai import OpenAI
-
 load_dotenv()
 
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 BACKEND_URL = os.getenv("BACKEND_URL", "http://localhost:8000")
-OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+SALUTESPEECH_AUTH_KEY = os.getenv("SALUTESPEECH_AUTH_KEY")
+SALUTESPEECH_SCOPE = os.getenv("SALUTESPEECH_SCOPE", "SALUTE_SPEECH_PERS")
+SALUTESPEECH_VERIFY_SSL = os.getenv("SALUTESPEECH_VERIFY_SSL", "1") not in ("0", "false", "False", "no", "NO")
+SALUTESPEECH_STT_MODEL = os.getenv("SALUTESPEECH_STT_MODEL", "general")
+SALUTESPEECH_STT_AUDIO_ENCODING = os.getenv("SALUTESPEECH_STT_AUDIO_ENCODING", "OGG_OPUS")
+SALUTESPEECH_STT_SAMPLE_RATE = int(os.getenv("SALUTESPEECH_STT_SAMPLE_RATE", "48000"))
+SALUTESPEECH_STT_CHANNELS = int(os.getenv("SALUTESPEECH_STT_CHANNELS", "1"))
+SALUTESPEECH_TTS_VOICE = os.getenv("SALUTESPEECH_TTS_VOICE", "Nec_24000")
+SALUTESPEECH_TTS_FORMAT = os.getenv("SALUTESPEECH_TTS_FORMAT", "opus")
 
 if not TELEGRAM_BOT_TOKEN:
     raise RuntimeError("TELEGRAM_BOT_TOKEN is not set")
-if not OPENAI_API_KEY:
-    raise RuntimeError("OPENAI_API_KEY is not set")
-
-oa_client = OpenAI(api_key=OPENAI_API_KEY)
 
 # ===== глобальное состояние пользователей =====
 # user_state[chat_id] = {
@@ -55,6 +58,12 @@ BTN_FINISH = "✅ Завершить"
 BTN_REPORT = "📊 Отчёт"
 BTN_PROGRESS = "📈 Прогресс"
 BTN_TOGGLE_MODE = "🔄 Сменить режим"
+
+SALUTE_OAUTH_URL = "https://ngw.devices.sberbank.ru:9443/api/v2/oauth"
+SALUTE_STT_URL = "https://smartspeech.sber.ru/rest/v1/speech:recognize"
+SALUTE_TTS_URL = "https://smartspeech.sber.ru/rest/v1/text:synthesize"
+
+_salute_token_cache: Dict[str, Any] = {"access_token": None, "expires_at": 0.0}
 
 # ===== Утилиты =====
 
@@ -132,25 +141,157 @@ def get_case_diagnosis_label(case: Dict[str, Any]) -> str:
 
 # ===== Voice / TTS =====
 
-async def transcribe_voice(file_bytes: bytes) -> str:
-    audio_file = io.BytesIO(file_bytes)
-    audio_file.name = "voice.ogg"
-    result = oa_client.audio.transcriptions.create(
-        model="whisper-1",
-        file=audio_file,
-        response_format="text",
+def get_salutespeech_token(force_refresh: bool = False) -> str:
+    if not SALUTESPEECH_AUTH_KEY:
+        raise RuntimeError("SALUTESPEECH_AUTH_KEY is not set")
+
+    now = time.time()
+    token = _salute_token_cache.get("access_token")
+    expires_at = float(_salute_token_cache.get("expires_at") or 0.0)
+    if (not force_refresh) and token and now < expires_at:
+        return str(token)
+
+    headers = {
+        "Content-Type": "application/x-www-form-urlencoded",
+        "Accept": "application/json",
+        "RqUID": str(uuid.uuid4()),
+        "Authorization": f"Basic {SALUTESPEECH_AUTH_KEY}",
+    }
+    payload = {"scope": SALUTESPEECH_SCOPE}
+    resp = requests.post(
+        SALUTE_OAUTH_URL,
+        headers=headers,
+        data=payload,
+        timeout=20,
+        verify=SALUTESPEECH_VERIFY_SSL,
     )
-    return result
+    resp.raise_for_status()
+    data = resp.json()
+    token = data.get("access_token")
+    exp_ms = int(data.get("expires_at", 0) or 0)
+    if not token:
+        raise RuntimeError(f"No access_token in SaluteSpeech OAuth response: {data}")
+
+    exp_ts = (exp_ms / 1000.0) - 60 if exp_ms > 0 else (time.time() + 25 * 60)
+    _salute_token_cache["access_token"] = token
+    _salute_token_cache["expires_at"] = max(time.time() + 60, exp_ts)
+    return str(token)
+
+
+async def transcribe_voice(file_bytes: bytes) -> str:
+    token = get_salutespeech_token()
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "audio/ogg;codecs=opus",
+    }
+    params = {
+        "model": SALUTESPEECH_STT_MODEL,
+        "audio_encoding": SALUTESPEECH_STT_AUDIO_ENCODING,
+        "sample_rate": SALUTESPEECH_STT_SAMPLE_RATE,
+        "channels_count": SALUTESPEECH_STT_CHANNELS,
+    }
+    resp = requests.post(
+        SALUTE_STT_URL,
+        headers=headers,
+        params=params,
+        data=file_bytes,
+        timeout=60,
+        verify=SALUTESPEECH_VERIFY_SSL,
+    )
+    if resp.status_code in (401, 403):
+        token = get_salutespeech_token(force_refresh=True)
+        headers["Authorization"] = f"Bearer {token}"
+        resp = requests.post(
+            SALUTE_STT_URL,
+            headers=headers,
+            params=params,
+            data=file_bytes,
+            timeout=60,
+            verify=SALUTESPEECH_VERIFY_SSL,
+        )
+    resp.raise_for_status()
+    data = resp.json()
+    if isinstance(data, dict):
+        for key in ("text", "result", "transcript"):
+            val = data.get(key)
+            if isinstance(val, str) and val.strip():
+                return val.strip()
+            if isinstance(val, list):
+                parts: List[str] = []
+                for item in val:
+                    if isinstance(item, str) and item.strip():
+                        parts.append(item.strip())
+                    elif isinstance(item, dict):
+                        txt = item.get("text")
+                        if isinstance(txt, str) and txt.strip():
+                            parts.append(txt.strip())
+                if parts:
+                    return " ".join(parts).strip()
+        hypotheses = data.get("hypotheses")
+        if isinstance(hypotheses, list) and hypotheses:
+            first = hypotheses[0]
+            if isinstance(first, dict):
+                txt = first.get("text")
+                if isinstance(txt, str) and txt.strip():
+                    return txt.strip()
+    raise RuntimeError("Не удалось распознать речь. Попробуйте говорить чуть громче и без паузы в начале.")
 
 
 async def tts_to_bytes(text: str) -> bytes:
-    response = oa_client.audio.speech.create(
-        model="tts-1",
-        voice="alloy",
-        input=text,
-        response_format="opus",
+    token = get_salutespeech_token()
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Content-Type": "application/text",
+    }
+    payload = (text or "").encode("utf-8")
+
+    # У разных версий SaluteSpeech могут отличаться имена query-параметров.
+    # Пробуем несколько совместимых вариантов.
+    candidates = [
+        {"voice": SALUTESPEECH_TTS_VOICE, "format": SALUTESPEECH_TTS_FORMAT},
+        {"voice": SALUTESPEECH_TTS_VOICE, "audio_encoding": SALUTESPEECH_TTS_FORMAT},
+        {"voice": SALUTESPEECH_TTS_VOICE, "audio_encoding": "opus"},
+        {"voice": SALUTESPEECH_TTS_VOICE, "format": "oggopus"},
+    ]
+
+    last_error_text = ""
+    for params in candidates:
+        resp = requests.post(
+            SALUTE_TTS_URL,
+            headers=headers,
+            params=params,
+            data=payload,
+            timeout=60,
+            verify=SALUTESPEECH_VERIFY_SSL,
+        )
+        if resp.status_code in (401, 403):
+            token = get_salutespeech_token(force_refresh=True)
+            headers["Authorization"] = f"Bearer {token}"
+            resp = requests.post(
+                SALUTE_TTS_URL,
+                headers=headers,
+                params=params,
+                data=payload,
+                timeout=60,
+                verify=SALUTESPEECH_VERIFY_SSL,
+            )
+
+        if resp.ok:
+            return resp.content
+
+        # Для совместимости пробуем следующий формат только на 400.
+        # Остальные статусы считаем финальной ошибкой.
+        try:
+            last_error_text = resp.text[:500]
+        except Exception:
+            last_error_text = f"HTTP {resp.status_code}"
+        if resp.status_code != 400:
+            resp.raise_for_status()
+
+    raise RuntimeError(
+        f"SaluteSpeech TTS error: unsupported params for voice={SALUTESPEECH_TTS_VOICE}, "
+        f"format={SALUTESPEECH_TTS_FORMAT}. Details: {last_error_text}"
     )
-    return response.read()
 
 
 # ===== Backend calls =====
