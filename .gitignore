@@ -1,5 +1,10 @@
-# macOS
+# macOS and editors
 .DS_Store
+**/.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo
 
 # Python
 __pycache__/
@@ -14,17 +19,50 @@ __pycache__/
 # Virtual environments
 venv/
 .venv/
+**/venv/
+**/.venv/
 
 # Env files
 .env
+.env.*
+!.env.example
+**/.env
+**/.env.*
+!**/.env.example
 
 # Runtime data
 *.db
 *.sqlite
 *.sqlite3
+sessions_store.json
 
 # Logs
 *.log
+coverage.xml
+htmlcov/
+.coverage
 
 # Local backup copies
 *копия*.py
+
+# Generated research and paper artifacts
+experiments/
+results/
+paper_artifacts/
+paper_artifacts 2/
+paper_arr_march_2026/
+paper_icml_ai4good_2026/
+paper_llm_reasoning_*/
+paper_uncertainnlp_2026/
+dataset_release/
+scripts/
+Makefile
+ALL_EXPERIMENTS*.md
+ALL_EXPERIMENT_RESULTS.md
+FIGURE_SOURCE_MAP.md
+OLD_GENERATION_DATA_INDEX.md
+assignment_*_agreement.json
+*.zip
+
+# Temporary files
+tmp/

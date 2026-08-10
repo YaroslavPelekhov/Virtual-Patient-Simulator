@@ -1,192 +1,229 @@
-# Виртуальный пациент — Web + Telegram + голос + режим преподавателя
+# Virtual Patient Simulator
 
-В проекте:
+[![Tests](https://github.com/YaroslavPelekhov/Virtual-Patient-Simulator/actions/workflows/tests.yml/badge.svg)](https://github.com/YaroslavPelekhov/Virtual-Patient-Simulator/actions/workflows/tests.yml)
+![Python](https://img.shields.io/badge/Python-3.10%2B-1f6feb)
+![FastAPI](https://img.shields.io/badge/API-FastAPI-009688)
+![Status](https://img.shields.io/badge/status-research%20prototype-f59e0b)
 
-- `backend/` — FastAPI-сервер с кейсами виртуальных пациентов и API для преподавателя.
-- `frontend/` — веб-интерфейс:
-  - режим студента (только видимая часть кейса)
-  - **режим преподавателя** (полный профиль + ход сессии)
-- `bot/` — Telegram-бот:
-  - выбор кейса
-  - текстовый диалог
-  - голосовой ввод и вывод (Speech-to-Text и Text-to-Speech OpenAI)
+An educational platform for practicing psychological interviewing with stateful, LLM-driven virtual patients. The project combines a web interface, a Telegram bot with optional speech support, a teacher dashboard, and a verification layer for evaluating therapeutic dialogue moves.
 
----
+> [!IMPORTANT]
+> This is a research and training prototype. It is not a medical device, does not provide therapy or diagnosis, and must not be used for clinical decision-making or crisis support.
 
-## 0. Подготовка
+## Highlights
 
-Нужно:
+- **Stateful virtual patients** whose trust, emotional intensity, and fatigue evolve across a dialogue.
+- **Structured training cases** with separate student-visible and teacher-only information.
+- **Teacher mode** with complete case profiles, session history, progress signals, and feedback.
+- **Web and Telegram clients**, including optional speech-to-text and text-to-speech via SaluteSpeech.
+- **Multiple LLM providers**: GigaChat, OpenAI, OpenAI-compatible endpoints, and OpenRouter.
+- **RAVR verification and repair** for methodology-aware evaluation of therapist turns.
+- **Research endpoints** for metrics, JSONL exports, ablations, and multi-model benchmarks.
 
-- Python 3.10+  
-- Аккаунт OpenAI с рабочим `OPENAI_API_KEY`  
-- Токен Telegram-бота от `@BotFather`
+The bundled interface and clinical cases are currently in Russian. Repository documentation and configuration references are in English.
 
----
+## System Overview
 
-## 1. Запуск backend (FastAPI)
-
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate        # Windows: venv\Scripts\activate
-pip install -r requirements.txt
+```mermaid
+flowchart LR
+    Student["Student"] --> Web["Web client"]
+    Student --> Telegram["Telegram bot"]
+    Teacher["Teacher"] --> Web
+    Telegram --> Speech["SaluteSpeech"]
+    Web --> API["FastAPI backend"]
+    Telegram --> API
+    API --> Cases["Structured case library"]
+    API --> State["Session and patient state"]
+    API --> LLM["LLM provider"]
+    API --> Verify["RAVR verifier and repair"]
+    API --> Store[("SQLite")]
 ```
 
-Установи переменную окружения для ключа OpenAI:
+At each turn, the backend evaluates the student's message, updates the interaction state, verifies methodology-specific constraints, generates the virtual patient's response, and persists the resulting session.
 
-```bash
-export OPENAI_API_KEY="ВАШ_КЛЮЧ"    # Windows: set OPENAI_API_KEY=ВАШ_КЛЮЧ
-```
-
-Запусти сервер:
-
-```bash
-uvicorn main:app --reload
-```
-
-По умолчанию он поднимется на `http://127.0.0.1:8000` (или `http://localhost:8000`).
-
-### Эндпоинты backend
-
-- `GET /api/cases`  
-  Список кейсов для студента (без скрытой части).
-
-- `GET /api/cases/{case_id}/teacher`  
-  **Режим преподавателя:** полный кейс со скрытой частью:
-  - предполагаемый диагноз
-  - цели обучения
-  - симптоматика, стиль, типичные фразы, триггеры
-
-- `POST /api/chat`  
-  Диалог со студентом (вызывает модель и возвращает ответ «пациента»).
-
-  Тело запроса:
-
-  ```json
-  {
-    "session_id": "строка",
-    "case_id": "case_gad_01",
-    "user_message": "текст вопроса / интервенции студента"
-  }
-  ```
-
-- `GET /api/sessions/{session_id}`  
-  **Режим преподавателя:** состояние и ход сессии:
-  - текущий case_id
-  - состояние пациента (`trust_level`, `emotional_intensity`, `fatigue`)
-  - история сообщений (student / patient)
-
----
-
-## 2. Запуск фронтенда (веб-интерфейс)
-
-1. Убедись, что backend уже запущен.
-2. Открой файл:
+## Repository Layout
 
 ```text
-frontend/index.html
+.
+├── backend/
+│   ├── main.py                    # FastAPI application and RAVR pipeline
+│   ├── virtual_patient_cases.json # Structured training cases
+│   ├── requirements.txt
+│   └── tests/
+├── bot/
+│   ├── bot.py                     # Telegram text and voice client
+│   └── requirements.txt
+├── frontend/
+│   ├── index.html
+│   ├── script.js
+│   └── style.css
+├── docs/
+│   ├── API.md
+│   ├── CONFIGURATION.md
+│   ├── DEPLOYMENT.md
+│   └── RESEARCH.md
+└── CONTRIBUTING.md
 ```
 
-в браузере (двойной клик или через «Открыть файл…»).
+## Quick Start
 
-### Что умеет интерфейс
+### Prerequisites
 
-- Вверху — выбор кейса + кнопка «Новая сессия».
-- Ниже — блок с краткой информацией о кейсе (как видит студент).
-- Справа/ниже — чат студент ↔ виртуальный пациент.
+- Python 3.10 or newer
+- Credentials for at least one supported LLM provider
+- A Telegram bot token only if the Telegram client is needed
+- SaluteSpeech credentials only if voice input/output is needed
 
-### Режим преподавателя
-
-В блоке управления (там же, где выбор кейса) есть переключатель:
-
-> ✅ Режим преподавателя
-
-Если включить:
-
-- появляется **жёлтый блок** «Режим преподавателя»;
-- отображается:
-  - предполагаемый диагноз
-  - цели обучения
-  - подробная структура кейса (симптомы, стиль, триггеры)
-- отдельный блок «Ход сессии»:
-  - текущий `session_id`
-  - состояние пациента: доверие, эмоциональная интенсивность, усталость
-  - список реплик — кто что сказал (студент / пациент)
-
-Кнопка **«Обновить ход сессии»** подтягивает свежую историю из backend.
-
-> 👉 Так можно, например, включить демонстрацию на проекторе: сверху чат студента, а внизу — скрытая для студентов часть и мета-информация о сессии.
-
----
-
-## 3. Telegram-бот с голосом
-
-### 3.1. Настройка `.env`
-
-Перейди в каталог `bot/` и создай файл `.env`:
-
-```env
-TELEGRAM_BOT_TOKEN=ваш_токен_бота_из_BotFather
-OPENAI_API_KEY=тот_же_ключ_что_для_backend
-BACKEND_URL=http://localhost:8000
-```
-
-> Если backend на другом хосте/порту, поменяй `BACKEND_URL`.
-
-### 3.2. Запуск бота
-
-Воспользуемся **той же venv**, что и для backend:
+### 1. Start the backend
 
 ```bash
-cd backend
-source venv/bin/activate             # или venv\Scripts\activate на Windows
+git clone https://github.com/YaroslavPelekhov/Virtual-Patient-Simulator.git
+cd Virtual-Patient-Simulator/backend
 
-cd ../bot
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+Edit `backend/.env` and configure one provider. For example, with OpenRouter:
+
+```env
+LLM_PROVIDER=openrouter
+OPENROUTER_API_KEY=your_openrouter_key
+OPENROUTER_MODEL_DEFAULT=openai/gpt-4o-mini
+```
+
+Run the API:
+
+```bash
+uvicorn main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Useful local URLs:
+
+- API documentation: <http://127.0.0.1:8000/docs>
+- Case list: <http://127.0.0.1:8000/api/cases>
+- Global RAVR metrics: <http://127.0.0.1:8000/api/ravr_metrics>
+
+### 2. Start the web client
+
+From the repository root:
+
+```bash
+python3 -m http.server 8080 --directory frontend
+```
+
+Open <http://127.0.0.1:8080>. The development frontend expects the backend at `http://localhost:8000`.
+
+### 3. Start the Telegram bot
+
+```bash
+cd bot
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+Set `TELEGRAM_BOT_TOKEN` and `BACKEND_URL` in `bot/.env`, then run:
+
+```bash
 python bot.py
 ```
 
-Бот напечатает в консоли `Telegram bot started...`.
+Voice messages require `SALUTESPEECH_AUTH_KEY`. Text mode works without speech credentials.
 
-Теперь в Telegram:
+## Core Workflow
 
-1. Найди своего бота по имени.
-2. Нажми `Start` или отправь `/start`.
-3. Бот покажет список кейсов (он берёт их из backend `/api/cases`).
-4. После выбора кейса можно:
-   - писать **текстом** — бот пересылает на `/api/chat`;
-   - отправлять **голосовые** — бот:
-     - скачивает голос,
-     - распознаёт через `whisper-1` (OpenAI),
-     - отправляет текст в `/api/chat`,
-     - озвучивает ответ (Text-to-Speech) и присылает voice.
+1. A student selects a training case and starts a session.
+2. The student writes a therapist message through the web or Telegram client.
+3. The backend evaluates empathy, validation, directivity, safety, and related signals.
+4. The patient's trust, emotional intensity, and fatigue are updated.
+5. RAVR checks methodology-specific constraints and creates a proof object.
+6. The configured LLM generates the next patient response from the case profile, state, and dialogue history.
+7. Teacher mode exposes the trajectory, progress indicators, and verification results.
 
-> ⚠ TTS (озвучка) зависит от актуальной модели и версии библиотеки OpenAI.  
-> При необходимости сверяйся с документацией и замени `gpt-4o-mini-tts` на доступную TTS-модель.
+## API Example
 
----
+```bash
+curl -X POST http://127.0.0.1:8000/api/chat \
+  -H 'Content-Type: application/json' \
+  -d '{
+    "session_id": "demo-session",
+    "case_id": "gtr_01",
+    "user_message": "What feels most difficult for you right now?",
+    "teacher_mode": true,
+    "llm_provider": "openrouter"
+  }'
+```
 
-## 4. Типичный сценарий использования
+The teacher-mode response may include the turn evaluation, methodology proof object, verifier result, and detected violations in addition to the virtual patient's reply.
 
-### Для студента
+See [API Reference](docs/API.md) for all endpoints.
 
-1. Открыл `frontend/index.html`.
-2. Выбрал кейс.
-3. Не включает режим преподавателя.
-4. Пишет вопросы/реплики пациенту, тренирует навыки.
+## Configuration
 
-### Для преподавателя
+Provider credentials and feature switches are loaded from `backend/.env` and `bot/.env`. Both files are ignored by Git. Start from the committed `.env.example` files and never commit real API keys or bot tokens.
 
-1. Тоже открывает `frontend/index.html`.
-2. Включает «Режим преподавателя».
-3. Видит:
-   - цели обучения,
-   - скрытый профиль случая,
-   - в реальном времени — ход сессии и состояние пациента.
-4. Может разбирать сессию со студентами после завершения.
+Supported backend provider values include:
 
----
+- `gigachat`
+- `openai`
+- `openai_compatible`
+- `openrouter`
+- `openrouter_gpt`
+- `openrouter_claude`
+- `openrouter_gemini`
+- `openrouter_deepseek`
+- `openrouter_qwen`
 
-## 5. Важно
+See [Configuration](docs/CONFIGURATION.md) for all variables and RAVR/RAVR-S switches.
 
-- Проект — **учебный симулятор**, не терапия и не диагностика.
-- Любые выводы — только для обучения, а не для реальной клинической практики.
+## Verification and Research Mode
+
+The backend includes a methodology-aware verification pipeline that returns:
+
+- satisfied and violated constraints;
+- supporting evidence and retrieved rule chunks;
+- citation validity, coverage, precision, and relevance;
+- adherence scores;
+- targeted repair suggestions and re-verification results.
+
+Research endpoints export session-level metrics and turn-level datasets and can run controlled benchmark and ablation configurations. See [Research Guide](docs/RESEARCH.md).
+
+## Tests
+
+The test suite uses mocked provider calls and does not require paid API access:
+
+```bash
+cd backend
+source .venv/bin/activate
+pip install -r requirements-dev.txt
+python -m unittest discover -s tests -v
+```
+
+## Deployment
+
+Do not expose the development server directly to the internet. A production installation should use a dedicated service account, a process supervisor, HTTPS termination, restricted CORS, firewall rules, secret storage, and access control for teacher endpoints.
+
+The previous development VPS is not treated as a supported deployment target. Follow [Deployment Guide](docs/DEPLOYMENT.md) to create a fresh and auditable installation.
+
+## Responsible Use
+
+- Use synthetic or explicitly consented data only.
+- Do not enter identifiable patient information.
+- Keep teacher-only case details and session exports access-controlled.
+- Do not rely on generated responses or verifier scores for diagnosis, treatment, or emergency decisions.
+- Keep a qualified instructor responsible for reviewing educational use.
+- Direct real emergencies to local emergency and crisis services.
+
+## Contributing
+
+Issues and pull requests are welcome. Before proposing a change, read [CONTRIBUTING.md](CONTRIBUTING.md). Changes to clinical cases, safety rules, or methodology constraints should include a rationale and tests.
+
+Security concerns should be reported according to [SECURITY.md](SECURITY.md), not through a public issue.
+
+## Project Status
+
+Active research prototype. APIs and case schemas may change. Pin a commit hash for experiments and record the model identifier, provider, prompts, and configuration used in every run.
