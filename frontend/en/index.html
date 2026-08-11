@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Virtual Patient Training Simulator</title>
+  <link rel="stylesheet" href="../style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div class="header-row">
+        <h1>Virtual Patient</h1>
+        <a class="language-link" href="/" lang="ru">Russian</a>
+      </div>
+      <p class="subtitle">A clinical interviewing simulator for psychology students</p>
+    </header>
+
+    <section class="controls" aria-label="Session controls">
+      <label for="caseSelect">Select a case:</label>
+      <select id="caseSelect" aria-label="Clinical case"></select>
+      <button id="newSessionBtn" type="button">New session</button>
+
+      <label class="teacher-toggle">
+        <input type="checkbox" id="teacherModeToggle" />
+        Instructor mode
+      </label>
+    </section>
+
+    <section class="case-info" id="caseInfo" aria-live="polite"></section>
+
+    <section class="teacher-panel" id="teacherPanel" style="display:none;">
+      <h2>Instructor mode</h2>
+      <div id="teacherCase"></div>
+      <div id="teacherSession"></div>
+      <div id="teacherProgress"></div>
+      <button id="refreshTeacherSessionBtn" type="button">Refresh session details</button>
+    </section>
+
+    <section class="chat">
+      <div id="chatWindow" class="chat-window" aria-live="polite"></div>
+      <div class="chat-input">
+        <textarea id="messageInput" rows="2" placeholder="Write your question to the patient..." aria-label="Message to the patient"></textarea>
+        <button id="sendBtn" type="button">Send</button>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p>For educational use only. Not for diagnosis, self-diagnosis, or treatment.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

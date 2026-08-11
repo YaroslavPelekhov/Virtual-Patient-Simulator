@@ -17,6 +17,16 @@ CORS_ALLOW_ORIGINS=http://localhost:8080,http://127.0.0.1:8080
 
 Use the exact HTTPS origin in production. The default `*` is retained only for backward-compatible local development.
 
+## Language Edition
+
+Set `VP_LANGUAGE` for each backend process:
+
+```env
+VP_LANGUAGE=ru
+```
+
+Supported values are `ru` and `en`. The English mode loads `virtual_patient_cases.en.json`, English patient and supervisor prompts, English methodology rules, and a separate `sessions.en.db`. To serve both editions simultaneously, run two instances of the same application on different local ports.
+
 ## Backend Provider Selection
 
 Set `LLM_PROVIDER` to one of the supported values:

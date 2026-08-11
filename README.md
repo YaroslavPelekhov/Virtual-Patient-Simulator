@@ -14,13 +14,14 @@ An educational platform for practicing psychological interviewing with stateful,
 
 - **Stateful virtual patients** whose trust, emotional intensity, and fatigue evolve across a dialogue.
 - **Structured training cases** with separate student-visible and teacher-only information.
+- **Complete Russian and English editions** with localized cases, patient prompts, supervision, and methodology rules.
 - **Teacher mode** with complete case profiles, session history, progress signals, and feedback.
 - **Web and Telegram clients**, including optional speech-to-text and text-to-speech via SaluteSpeech.
 - **Multiple LLM providers**: GigaChat, OpenAI, OpenAI-compatible endpoints, and OpenRouter.
 - **RAVR verification and repair** for methodology-aware evaluation of therapist turns.
 - **Research endpoints** for metrics, JSONL exports, ablations, and multi-model benchmarks.
 
-The bundled interface and clinical cases are currently in Russian. Repository documentation and configuration references are in English.
+The bundled simulator is available in Russian and English. Each language uses its own case library and session database when deployed as a separate backend instance.
 
 ## System Overview
 
@@ -48,6 +49,7 @@ At each turn, the backend evaluates the student's message, updates the interacti
 ├── backend/
 │   ├── main.py                    # FastAPI application and RAVR pipeline
 │   ├── virtual_patient_cases.json # Structured training cases
+│   ├── virtual_patient_cases.en.json # English case edition
 │   ├── requirements.txt
 │   └── tests/
 ├── bot/
@@ -56,7 +58,8 @@ At each turn, the backend evaluates the student's message, updates the interacti
 ├── frontend/
 │   ├── index.html
 │   ├── script.js
-│   └── style.css
+│   ├── style.css
+│   └── en/                        # English web edition
 ├── docs/
 │   ├── API.md
 │   ├── CONFIGURATION.md
@@ -100,6 +103,12 @@ Run the API:
 uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```
 
+The default backend language is Russian. To run the English edition locally on a second port:
+
+```bash
+VP_LANGUAGE=en uvicorn main:app --reload --host 127.0.0.1 --port 8001
+```
+
 Useful local URLs:
 
 - API documentation: <http://127.0.0.1:8000/docs>
@@ -114,7 +123,7 @@ From the repository root:
 python3 -m http.server 8080 --directory frontend
 ```
 
-Open <http://127.0.0.1:8080>. The development frontend expects the backend at `http://localhost:8000`.
+Open <http://127.0.0.1:8080> for Russian or <http://127.0.0.1:8080/en/> for English. The development frontends expect their backends at ports `8000` and `8001`, respectively.
 
 ### 3. Start the Telegram bot
 

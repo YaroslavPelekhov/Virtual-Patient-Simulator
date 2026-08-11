@@ -1,0 +1,1422 @@
+{
+  "cases": [
+    {
+      "id": "gtr_01",
+      "title_for_teacher": "Student",
+      "visible_to_student": {
+        "age": 22,
+        "gender": "female",
+        "context": "Fourth-year student, feels constant tension and fear of making mistakes.",
+        "setting": "First consultation at the university psychological center",
+        "initial_request": "\"I constantly worry, even when everything is objectively fine.\"",
+        "warning_to_student": "Tends to be self-critical and perfectionistic; it's important not to rush to reassure."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Generalized anxiety disorder (GAD) with mild depressive features",
+        "differential_diagnosis": [
+          "Depressive episode",
+          "Adjustment disorder",
+          "Mixed anxiety-depressive disorder"
+        ],
+        "goals_for_training": [
+          "Mastering skills for establishing safe contact with an anxious client.",
+          "Developing the ability to explore the content of anxious thoughts, not just their intensity.",
+          "Practicing structuring the first session in the context of high background anxiety."
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "The client often talks about the fear of 'letting others down'; it is useful to explore her internal standards and expectations."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.4,
+          "depressed_mood": 0.3,
+          "emotional_reactivity": 0.6,
+          "anhedonia": 0.2
+        },
+        "anxiety_domain": {
+          "generalized_anxiety": 0.9,
+          "anticipatory_anxiety": 0.9,
+          "somatic_anxiety": 0.7
+        },
+        "cognitive_domain": {
+          "worry_chains": 0.9,
+          "catastrophizing": 0.8,
+          "attention_impairment": 0.5
+        },
+        "behavior_domain": {
+          "avoidance": 0.4,
+          "safety_behaviors": 0.7,
+          "procrastination": 0.5
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.5,
+          "rejection_sensitivity": 0.6,
+          "attachment_style": "anxious-ambivalent",
+          "empathy": 0.8,
+          "people_pleasing": 0.7
+        },
+        "identity_domain": {
+          "identity_stability": 0.7,
+          "self_worth": 0.4,
+          "guilt_shame": 0.5
+        },
+        "physiology_domain": {
+          "sleep_dysregulation": 0.7,
+          "fatigue": 0.6,
+          "appetite_change": 0.3
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.2,
+        "antagonism": 0.1,
+        "disinhibition": 0.2,
+        "psychoticism": 0.0,
+        "description": "Perfectionist, approval-oriented, tends to overthink and worry about the future."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.8,
+        "emotional_color": 0.6,
+        "avoidance_language": 0.3,
+        "self_reference_frequency": 0.7,
+        "reassurance_seeking": 0.8
+      },
+      "triggers": {
+        "performance_pressure": 0.9,
+        "uncertainty": 0.9,
+        "criticism": 0.7,
+        "health_topics": 0.6
+      },
+      "typical_phrases": [
+        "I always feel like I'm missing something.",
+        "Even when everything is done, I think I could have done better.",
+        "I can't just relax; my mind won't turn off.",
+        "It seems like nothing terrible is happening, but the anxiety doesn't go away."
+      ]
+    },
+    {
+      "id": "gtr_02",
+      "title_for_teacher": "Working Mother",
+      "visible_to_student": {
+        "age": 35,
+        "gender": "female",
+        "context": "Works in an office, has two children, complains of constant worries about family and work.",
+        "setting": "Consultation at a private center",
+        "initial_request": "\"I'm always waiting for something to happen to my children or at work.\"",
+        "warning_to_student": "May undervalue her own needs, focusing only on caring for others."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "GAD, chronic course, emotional burnout",
+        "differential_diagnosis": [
+          "Depressive disorder",
+          "Adjustment disorder",
+          "Somatoform disorders"
+        ],
+        "goals_for_training": [
+          "Practicing the skill of exploring the distribution of responsibility and boundaries.",
+          "Helping the student maintain empathy when faced with complaints about 'endless burdens.'",
+          "Finding resources and supports, not just problems."
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "The client may say that 'it's shameful to complain'; it's important to recognize her fatigue and normalize her request."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.5,
+          "depressed_mood": 0.4,
+          "emotional_reactivity": 0.6
+        },
+        "anxiety_domain": {
+          "generalized_anxiety": 0.9,
+          "anticipatory_anxiety": 0.8,
+          "somatic_anxiety": 0.8
+        },
+        "cognitive_domain": {
+          "worry_chains": 0.9,
+          "catastrophizing": 0.7,
+          "attention_impairment": 0.5
+        },
+        "behavior_domain": {
+          "avoidance": 0.3,
+          "safety_behaviors": 0.7,
+          "over_responsibility": 0.9
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.6,
+          "rejection_sensitivity": 0.5,
+          "attachment_style": "secure with anxious elements",
+          "empathy": 0.9
+        },
+        "identity_domain": {
+          "identity_stability": 0.7,
+          "self_worth": 0.4,
+          "guilt_shame": 0.7
+        },
+        "physiology_domain": {
+          "sleep_dysregulation": 0.8,
+          "fatigue": 0.9,
+          "appetite_change": 0.4
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.8,
+        "detachment": 0.2,
+        "antagonism": 0.1,
+        "disinhibition": 0.2,
+        "psychoticism": 0.0,
+        "description": "Very caring, used to 'carrying everything,' feels ashamed to ask for help."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.6,
+        "coherence": 0.8,
+        "emotional_color": 0.6,
+        "avoidance_language": 0.3,
+        "self_reference_frequency": 0.5
+      },
+      "triggers": {
+        "news_about_dangers": 0.9,
+        "work_deadlines": 0.8,
+        "children_health": 0.9
+      },
+      "typical_phrases": [
+        "If I relax, something will definitely happen.",
+        "I have no right to 'drop out'; everyone depends on me.",
+        "It's hard to believe that everything will be okay if I don't control everything."
+      ]
+    },
+    {
+      "id": "panic_01",
+      "title_for_teacher": "Young Man",
+      "visible_to_student": {
+        "age": 29,
+        "gender": "male",
+        "context": "Works in an office, has called an ambulance several times due to panic attacks.",
+        "setting": "Private psychological consultation",
+        "initial_request": "\"Sometimes it suddenly hits me: my heart races, I feel like I'm dying.\"",
+        "warning_to_student": "It's important not to undervalue physical symptoms and not to take on the role of a cardiologist."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Panic disorder with developing agoraphobia",
+        "differential_diagnosis": [
+          "Generalized anxiety disorder",
+          "Depression with anxiety episodes",
+          "Somatic diseases (excluded by doctors)"
+        ],
+        "goals_for_training": [
+          "Mastering detailed questioning about the first and subsequent panic attacks.",
+          "Understanding the role of avoidance and anticipatory anxiety.",
+          "Practicing psychoeducation about panic without making promises of 'cure forever.'"
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "The client believes the problem is with his heart; it's important to gently connect the physical and psychological without arguing directly."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.3,
+          "depressed_mood": 0.2,
+          "emotional_reactivity": 0.7
+        },
+        "anxiety_domain": {
+          "generalized_anxiety": 0.5,
+          "anticipatory_anxiety": 0.9,
+          "panic_susceptibility": 0.95,
+          "somatic_anxiety": 0.95
+        },
+        "cognitive_domain": {
+          "catastrophizing": 0.9,
+          "fear_of_dying": 0.9,
+          "fear_of_losing_control": 0.8
+        },
+        "behavior_domain": {
+          "avoidance": 0.7,
+          "safety_behaviors": 0.9,
+          "checking_body_signals": 0.9
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.5,
+          "rejection_sensitivity": 0.3,
+          "attachment_style": "avoidant with anxious elements",
+          "empathy": 0.6
+        },
+        "physiology_domain": {
+          "sleep_dysregulation": 0.5,
+          "fatigue": 0.5
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.6,
+        "detachment": 0.3,
+        "antagonism": 0.2,
+        "disinhibition": 0.2,
+        "psychoticism": 0.0,
+        "description": "Controlling, dislikes appearing weak, perceives anxiety as a weakness."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.5,
+        "coherence": 0.7,
+        "emotional_color": 0.7,
+        "avoidance_language": 0.2,
+        "somatic_focus": 0.9
+      },
+      "triggers": {
+        "public_transport": 0.9,
+        "being_alone_outside": 0.7,
+        "crowded_places": 0.8,
+        "health_topics": 0.9
+      },
+      "typical_phrases": [
+        "I know for sure that something serious is happening to me at that moment.",
+        "Doctors say everything is fine, but it feels different.",
+        "I've started avoiding the subway and shopping malls.",
+        "I'm scared that this will happen in a crowded place and I'll be embarrassed."
+      ]
+    },
+    {
+      "id": "panic_02",
+      "title_for_teacher": "Young Woman",
+      "visible_to_student": {
+        "age": 24,
+        "gender": "female",
+        "context": "Recently moved to another city; attacks started after changing jobs.",
+        "setting": "Online consultation",
+        "initial_request": "\"Suddenly my head starts spinning, my vision darkens, I'm afraid I'll faint.\"",
+        "warning_to_student": "There is a connection to the stress of moving; it's important to consider the context, not just the symptoms."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Panic attacks in the context of adaptation stress",
+        "differential_diagnosis": [
+          "GAD",
+          "Agoraphobia",
+          "Adjustment disorder"
+        ],
+        "goals_for_training": [
+          "Practicing the connection between life events and panic.",
+          "Understanding the role of avoidance and safe behaviors.",
+          "Practicing building a safety base in current life."
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "The client may link everything only to physiology and fatigue; it is useful to delicately broaden the focus."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.4,
+          "depressed_mood": 0.3,
+          "emotional_reactivity": 0.7
+        },
+        "anxiety_domain": {
+          "generalized_anxiety": 0.6,
+          "anticipatory_anxiety": 0.8,
+          "panic_susceptibility": 0.9,
+          "somatic_anxiety": 0.8
+        },
+        "cognitive_domain": {
+          "fear_of_losing_consciousness": 0.9,
+          "catastrophizing": 0.8
+        },
+        "behavior_domain": {
+          "avoidance": 0.6,
+          "safety_behaviors": 0.8
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.6,
+          "rejection_sensitivity": 0.5,
+          "attachment_style": "anxious-ambivalent"
+        },
+        "physiology_domain": {
+          "sleep_dysregulation": 0.6,
+          "fatigue": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.3,
+        "antagonism": 0.1,
+        "disinhibition": 0.3,
+        "psychoticism": 0.0,
+        "description": "Sensitive, prone to doubts, seeks support in relationships."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.7,
+        "emotional_color": 0.8,
+        "avoidance_language": 0.2
+      },
+      "triggers": {
+        "new_places": 0.9,
+        "crowds": 0.7,
+        "work_stress": 0.8
+      },
+      "typical_phrases": [
+        "I'm afraid I'll faint and no one will help me.",
+        "Since I moved, my anxiety has increased a lot.",
+        "Sometimes it's scary to leave the house without someone by my side."
+      ]
+    },
+    {
+      "id": "okr_01",
+      "title_for_teacher": "Contamination",
+      "visible_to_student": {
+        "age": 32,
+        "gender": "female",
+        "context": "Works in IT, fears contamination and infection, constantly washes her hands and home.",
+        "setting": "Outpatient consultation",
+        "initial_request": "\"I know this is excessive, but if I don't wash, my anxiety skyrockets.\"",
+        "warning_to_student": "Do not reinforce rituals and avoid enhancing checks."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Obsessive-compulsive disorder (OCD), contamination",
+        "differential_diagnosis": [
+          "GAD",
+          "Personality disorder with obsessive traits",
+          "Depression with ruminations"
+        ],
+        "goals_for_training": [
+          "Differentiating obsessions from real risks.",
+          "Practicing tolerating the client's anxiety without immediate reassurance.",
+          "Understanding the dynamics of 'thought - anxiety - ritual - relief.'"
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "The client rationally understands the excessiveness of her behavior but emotionally cannot withstand refraining from rituals."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.3,
+          "depressed_mood": 0.3,
+          "emotional_reactivity": 0.5
+        },
+        "anxiety_domain": {
+          "generalized_anxiety": 0.6,
+          "anticipatory_anxiety": 0.8,
+          "somatic_anxiety": 0.5
+        },
+        "cognitive_domain": {
+          "obsessive_thoughts": 0.95,
+          "intrusive_thoughts": 0.9,
+          "magical_thinking": 0.5,
+          "need_for_certainty": 0.9
+        },
+        "behavior_domain": {
+          "compulsivity": 0.95,
+          "washing_rituals": 0.9,
+          "checking_rituals": 0.3,
+          "avoidance": 0.6
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.6,
+          "rejection_sensitivity": 0.4,
+          "attachment_style": "secure with anxiety"
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.6,
+        "detachment": 0.2,
+        "antagonism": 0.1,
+        "disinhibition": 0.1,
+        "psychoticism": 0.1,
+        "description": "Responsible, meticulous, fears 'making a mistake' and causing harm."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.9,
+        "emotional_color": 0.5,
+        "detail_orientation": 0.9
+      },
+      "triggers": {
+        "public_surfaces": 0.9,
+        "illness_news": 0.8,
+        "visitors_at_home": 0.8
+      },
+      "typical_phrases": [
+        "I can wash my hands for half an hour until I feel that it's 'enough.'",
+        "I know the chances of infection are small, but the anxiety is very strong.",
+        "I often refuse to meet if it seems that it will be dirty there."
+      ]
+    },
+    {
+      "id": "okr_02",
+      "title_for_teacher": "Checking",
+      "visible_to_student": {
+        "age": 28,
+        "gender": "male",
+        "context": "Engineer, spends a lot of time checking locks and appliances.",
+        "setting": "Psychological consultation",
+        "initial_request": "\"I check the door and the stove ten times; otherwise, I can't leave.\"",
+        "warning_to_student": "It's important not to become another source of reassurance that 'everything is fine.'"
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "OCD, dominated by checking and responsibility for harm",
+        "differential_diagnosis": [
+          "GAD",
+          "Perfectionism without OCD",
+          "Personality disorder with obsessive-compulsive traits"
+        ],
+        "goals_for_training": [
+          "Explore the connection between the sense of responsibility and rituals.",
+          "Practice a resilient non-reassuring style.",
+          "Understand how rituals interfere with daily functioning."
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "The client may justify checking with 'common sense'; it's important to gently guide them to the cost in terms of time and tension."
+      },
+      "symptom_profile": {
+        "anxiety_domain": {
+          "anticipatory_anxiety": 0.8
+        },
+        "cognitive_domain": {
+          "obsessive_thoughts": 0.9,
+          "intrusive_thoughts": 0.8,
+          "responsibility_for_harm": 0.9
+        },
+        "behavior_domain": {
+          "compulsivity": 0.9,
+          "checking_rituals": 0.95,
+          "avoidance": 0.4
+        },
+        "identity_domain": {
+          "self_worth": 0.6,
+          "guilt_shame": 0.6
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.5,
+        "detachment": 0.3,
+        "antagonism": 0.1,
+        "disinhibition": 0.1,
+        "psychoticism": 0.1,
+        "description": "Tends to control and feel responsible, fears doing something 'wrong.'"
+      },
+      "linguistic_profile": {
+        "verbosity": 0.6,
+        "coherence": 0.8,
+        "emotional_color": 0.5
+      },
+      "triggers": {
+        "leaving_home": 0.9,
+        "using_gas_or_iron": 0.9,
+        "being_last_to_leave": 0.8
+      },
+      "typical_phrases": [
+        "If I don't check, I'll think about it all day.",
+        "Sometimes I go back home just to make sure everything is turned off.",
+        "I feel like if something happens, it will be my fault."
+      ]
+    },
+    {
+      "id": "ptsd_01",
+      "title_for_teacher": "After a Car Accident",
+      "visible_to_student": {
+        "age": 34,
+        "gender": "male",
+        "context": "Experienced a serious car accident a year ago, avoids cars, troubled by dreams and memories.",
+        "setting": "City psychological service",
+        "initial_request": "\"I dream about the accident at night, and during the day I avoid any roads.\"",
+        "warning_to_student": "Be cautious when asking about the details of the trauma; it's important not to re-traumatize."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Post-traumatic stress disorder (PTSD)",
+        "differential_diagnosis": [
+          "Adjustment disorder",
+          "Depressive disorder",
+          "Anxiety disorder"
+        ],
+        "goals_for_training": [
+          "Develop skills to work with avoidance and hyperarousal.",
+          "Learn to tolerate pauses and the client's emotional reactions.",
+          "Practice gentle entry and exit from the trauma topic."
+        ],
+        "risk_level": "moderate",
+        "notes_for_teacher": "The client may 'get stuck' in describing details or become detached."
+      },
+      "symptom_profile": {
+        "trauma_domain": {
+          "trauma_intrusions": 0.95,
+          "avoidance_trauma_cues": 0.9,
+          "hypervigilance": 0.8,
+          "startle_reactivity": 0.8
+        },
+        "affective_regulation": {
+          "emotional_reactivity": 0.8,
+          "depressed_mood": 0.5
+        },
+        "physiology_domain": {
+          "sleep_dysregulation": 0.9,
+          "nightmares": 0.9,
+          "fatigue": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.6,
+        "antagonism": 0.2,
+        "disinhibition": 0.2,
+        "psychoticism": 0.1,
+        "description": "Reserved, has become even more closed off and cautious after the trauma."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.4,
+        "coherence": 0.7,
+        "emotional_color": 0.6,
+        "avoidance_language": 0.7
+      },
+      "triggers": {
+        "cars": 0.9,
+        "sirens": 0.8,
+        "night_time": 0.7
+      },
+      "typical_phrases": [
+        "I keep replaying that moment, even though I want to forget.",
+        "I feel like I'm not the person I was before the accident.",
+        "People say, 'be glad you're alive,' but I feel like I'm stuck there."
+      ]
+    },
+    {
+      "id": "ptsd_02",
+      "title_for_teacher": "After Violence",
+      "visible_to_student": {
+        "age": 25,
+        "gender": "female",
+        "context": "Experienced violence in an intimate relationship, seeking help two years after the breakup.",
+        "setting": "Crisis center",
+        "initial_request": "\"I tried to forget, but I still fear intimacy and conflict.\"",
+        "warning_to_student": "High sensitivity to the topic of trust and boundaries; it's important not to rush the disclosure of details."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "PTSD, likely complex variant",
+        "differential_diagnosis": [
+          "BPD",
+          "Depressive disorder",
+          "Social anxiety disorder"
+        ],
+        "goals_for_training": [
+          "Sensitivity to the topic of violence and shame.",
+          "Practice establishing boundaries and the client's control over what to share.",
+          "Understand the impact of trauma on trust and intimacy."
+        ],
+        "risk_level": "moderate",
+        "notes_for_teacher": "The client may blame herself; it's important to gently normalize and separate responsibility."
+      },
+      "symptom_profile": {
+        "trauma_domain": {
+          "trauma_intrusions": 0.8,
+          "avoidance_trauma_cues": 0.9,
+          "hypervigilance": 0.8
+        },
+        "affective_regulation": {
+          "mood_instability": 0.5,
+          "depressed_mood": 0.7,
+          "emotional_reactivity": 0.7
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.3,
+          "rejection_sensitivity": 0.8,
+          "attachment_style": "fearful-avoidant"
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.8,
+        "detachment": 0.7,
+        "antagonism": 0.1,
+        "disinhibition": 0.2,
+        "psychoticism": 0.1,
+        "description": "The experience of violence has heightened the sense of insecurity in relationships, but the need for closeness remains."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.5,
+        "coherence": 0.7,
+        "emotional_color": 0.7,
+        "avoidance_language": 0.8
+      },
+      "triggers": {
+        "raised_voice": 0.9,
+        "arguments": 0.8,
+        "physical_proximity": 0.7
+      },
+      "typical_phrases": [
+        "I seem to understand that I'm safe now, but my body reacts as it did then.",
+        "I find it hard to trust, especially if someone is angry or raises their voice.",
+        "I often think that it's my fault that things turned out this way."
+      ]
+    },
+    {
+      "id": "prl_01",
+      "title_for_teacher": "Emotions",
+      "visible_to_student": {
+        "age": 22,
+        "gender": "female",
+        "context": "Student, frequently changes partners, complains of emptiness and sharp mood swings.",
+        "setting": "University psychological center",
+        "initial_request": "\"I either idealize people or hate them, and it's like that with everyone.\"",
+        "warning_to_student": "There may be sudden changes in attitude towards the therapist; it's important to endure."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Borderline personality disorder (BPD)",
+        "differential_diagnosis": [
+          "Bipolar II disorder",
+          "Complex PTSD",
+          "Mixed personality disorder"
+        ],
+        "goals_for_training": [
+          "Learn to tolerate the client's intense emotions without rushing interpretations.",
+          "Explore the fear of abandonment and attachment instability.",
+          "Practice responses to potential devaluation by the therapist."
+        ],
+        "risk_level": "moderate",
+        "notes_for_teacher": "Past episodes of self-harming behavior, currently only thoughts; it's important to observe without detailing methods."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.95,
+          "depressed_mood": 0.6,
+          "emotional_reactivity": 0.95,
+          "chronic_emptiness": 0.9
+        },
+        "anxiety_domain": {
+          "abandonment_anxiety": 0.95
+        },
+        "cognitive_domain": {
+          "splitting_thinking": 0.9,
+          "identity_diffusion": 0.8,
+          "paranoid_suspicion": 0.4
+        },
+        "behavior_domain": {
+          "impulsivity": 0.8,
+          "self_damaging_behaviors": 0.5,
+          "anger_outbursts": 0.7
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.3,
+          "rejection_sensitivity": 0.95,
+          "attachment_style": "fearful-dependent",
+          "idealization_devaluation": 0.9
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.9,
+        "detachment": 0.3,
+        "antagonism": 0.4,
+        "disinhibition": 0.8,
+        "psychoticism": 0.4,
+        "description": "Very sensitive to distance, fears being abandoned, extremes in relationships."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.8,
+        "coherence": 0.6,
+        "emotional_color": 0.95
+      },
+      "triggers": {
+        "perceived_rejection": 0.95,
+        "changes_in_schedule": 0.8,
+        "boundaries": 0.7
+      },
+      "typical_phrases": [
+        "I either cling to a person or push them away immediately.",
+        "Sometimes I don't even understand who I am and what I want.",
+        "If I don't get a response for a long time, I'm sure I'm being abandoned."
+      ]
+    },
+    {
+      "id": "prl_02",
+      "title_for_teacher": "Fantasies",
+      "visible_to_student": {
+        "age": 26,
+        "gender": "male",
+        "context": "Works, occasionally ends relationships, complains of anger outbursts and emptiness.",
+        "setting": "Private practice",
+        "initial_request": "\"Sometimes I feel nothing, and other times I want to destroy everything.\"",
+        "warning_to_student": "There may be casual mentions of 'not living'—it's important to ask carefully without detailing methods."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "BPD, marked affect dysregulation",
+        "differential_diagnosis": [
+          "Bipolar disorder",
+          "Narcissistic personality disorder",
+          "Substance abuse"
+        ],
+        "goals_for_training": [
+          "Practice calm inquiry about self-harming thoughts.",
+          "Master the skill of tolerating the client's anger without becoming defensive.",
+          "Understand the connection between feelings of emptiness and impulsivity."
+        ],
+        "risk_level": "moderate",
+        "notes_for_teacher": "The client may dramatically talk about 'extreme measures'; it's important to keep the focus on feelings and needs."
+      },
+      "symptom_profile": {
+        "affective_regulation": {
+          "mood_instability": 0.9,
+          "depressed_mood": 0.6,
+          "emotional_reactivity": 0.9,
+          "chronic_emptiness": 0.8
+        },
+        "behavior_domain": {
+          "impulsivity": 0.9,
+          "anger_outbursts": 0.8,
+          "self_damaging_behaviors": 0.6
+        },
+        "interpersonal_domain": {
+          "rejection_sensitivity": 0.9,
+          "trust_capacity": 0.4
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.8,
+        "detachment": 0.4,
+        "antagonism": 0.5,
+        "disinhibition": 0.9,
+        "psychoticism": 0.3,
+        "description": "Struggles with impulse control, conflict between the desire for closeness and the fear of rejection."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.6,
+        "emotional_color": 0.9
+      },
+      "triggers": {
+        "jealousy": 0.9,
+        "perceived_injustice": 0.8
+      },
+      "typical_phrases": [
+        "When someone leaves me, it feels like I'm destroying myself.",
+        "I can say things in anger that I later deeply regret.",
+        "Sometimes I think everyone would be better off without me, but I don't do anything about it."
+      ]
+    },
+    {
+      "id": "nrl_01",
+      "title_for_teacher": "Vulnerable Type",
+      "visible_to_student": {
+        "age": 27,
+        "gender": "male",
+        "context": "Freelancer, feels undervalued, reacts painfully to criticism.",
+        "setting": "Private practice",
+        "initial_request": "\"I am surrounded by incompetent people, and it hinders my potential.\"",
+        "warning_to_student": "Devaluing comments towards the therapist may occur."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Narcissistic Personality Disorder (NPD), vulnerable type",
+        "differential_diagnosis": [
+          "Borderline Personality Disorder (BPD)",
+          "Antisocial traits",
+          "Normative perfectionism"
+        ],
+        "goals_for_training": [
+          "Skill in enduring devaluation and inflated demands.",
+          "Understanding the dynamics of shame and vulnerability behind grandiosity.",
+          "Developing the ability to see the fear of inadequacy behind complaints."
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "The client may test the student's competence; it is important to maintain a professional stance and interest."
+      },
+      "symptom_profile": {
+        "cognitive_domain": {
+          "grandiose_beliefs": 0.8,
+          "envy_others": 0.7,
+          "externalization_of_blame": 0.9
+        },
+        "interpersonal_domain": {
+          "need_for_admiration": 0.9,
+          "sense_of_entitlement": 0.8,
+          "empathy": 0.3,
+          "rejection_sensitivity": 0.8
+        },
+        "identity_domain": {
+          "fragile_self_esteem": 0.9,
+          "guilt_shame": 0.8
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.5,
+        "antagonism": 0.8,
+        "disinhibition": 0.4,
+        "psychoticism": 0.2,
+        "description": "Demonstrates confidence outwardly, but fears being 'ordinary' and insignificant inside."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.8,
+        "emotional_color": 0.6,
+        "self_reference_frequency": 0.9,
+        "blame_language": 0.8
+      },
+      "triggers": {
+        "criticism": 0.95,
+        "comparison_with_others": 0.9,
+        "lack_of_recognition": 0.9
+      },
+      "typical_phrases": [
+        "It's hard for me to communicate with people who don't measure up to my level.",
+        "When I'm pointed out my mistakes, it feels like I've been completely devalued.",
+        "Sometimes it seems like no one sees how truly promising I am."
+      ]
+    },
+    {
+      "id": "nrl_02",
+      "title_for_teacher": "Overt Type",
+      "visible_to_student": {
+        "age": 33,
+        "gender": "female",
+        "context": "Successful in her career, complains that partners 'do not measure up to her level.'",
+        "setting": "Private counseling",
+        "initial_request": "\"I am constantly disappointed in people; there are few worthy ones around.\"",
+        "warning_to_student": "May try to dominate the conversation; it is important to maintain structure."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "NPD, more overt grandiose component",
+        "differential_diagnosis": [
+          "Antisocial traits",
+          "Normative high self-esteem",
+          "BPD with narcissistic defenses"
+        ],
+        "goals_for_training": [
+          "Confronting devaluation without resorting to defensive responses.",
+          "Exploring themes of shame and loneliness behind grandiosity.",
+          "Skill in maintaining contact when the client shows little interest in the therapist as a person."
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "May quickly resort to sarcasm when discussing vulnerable topics."
+      },
+      "symptom_profile": {
+        "interpersonal_domain": {
+          "need_for_admiration": 0.95,
+          "sense_of_entitlement": 0.9,
+          "empathy": 0.2
+        },
+        "cognitive_domain": {
+          "grandiose_beliefs": 0.9
+        },
+        "identity_domain": {
+          "self_worth": 0.8,
+          "fragile_self_esteem": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.6,
+        "detachment": 0.4,
+        "antagonism": 0.9,
+        "disinhibition": 0.5,
+        "psychoticism": 0.2,
+        "description": "Vibrant, charismatic, prone to dominating and criticizing others."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.9,
+        "coherence": 0.8,
+        "emotional_color": 0.7,
+        "blame_language": 0.9
+      },
+      "triggers": {
+        "being_ignored": 0.9,
+        "non_compliance": 0.8
+      },
+      "typical_phrases": [
+        "I invest in people more than they deserve.",
+        "If someone can't appreciate me, that's their problem.",
+        "I rarely meet those who are truly on my level."
+      ]
+    },
+    {
+      "id": "sdvg_01",
+      "title_for_teacher": "Adult Woman",
+      "visible_to_student": {
+        "age": 26,
+        "gender": "female",
+        "context": "Works in a creative field, complains of forgetfulness and difficulties with organization.",
+        "setting": "Psychological counseling",
+        "initial_request": "\"I keep losing everything, I'm late, and I can't finish tasks.\"",
+        "warning_to_student": "It is important not to reduce this to 'laziness' but to see real functional difficulties."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "ADHD, predominantly inattentive type",
+        "differential_diagnosis": [
+          "Depression",
+          "Anxiety disorder",
+          "Personality disorders"
+        ],
+        "goals_for_training": [
+          "Focus on specific examples of attention and planning impairments.",
+          "Practice a normalizing, non-judgmental stance.",
+          "Distinguish between ADHD and simple procrastination."
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "Uses humor as a defense, may devalue her difficulties."
+      },
+      "symptom_profile": {
+        "cognitive_domain": {
+          "attention_impairment": 0.9,
+          "distractibility": 0.9,
+          "working_memory_issues": 0.8,
+          "time_blindness": 0.8
+        },
+        "behavior_domain": {
+          "disorganization": 0.9,
+          "hyperactivity_restlessness": 0.4,
+          "procrastination": 0.8
+        },
+        "identity_domain": {
+          "self_worth": 0.4,
+          "guilt_shame": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.5,
+        "detachment": 0.2,
+        "antagonism": 0.2,
+        "disinhibition": 0.7,
+        "psychoticism": 0.0,
+        "description": "Energetic, creative, quickly gets excited, but struggles to maintain focus."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.9,
+        "coherence": 0.6,
+        "emotional_color": 0.7,
+        "topic_shifting": 0.9
+      },
+      "triggers": {
+        "boring_tasks": 0.9,
+        "long_meetings": 0.8
+      },
+      "typical_phrases": [
+        "I have a million ideas, but everything falls apart during the implementation stage.",
+        "I constantly forget important things and then feel terrible shame.",
+        "I can super-focus on something interesting and completely fail at everything else."
+      ]
+    },
+    {
+      "id": "sdvg_02",
+      "title_for_teacher": "Young Man",
+      "visible_to_student": {
+        "age": 20,
+        "gender": "male",
+        "context": "Student, complains about the inability to sit through classes and concentrate.",
+        "setting": "University service",
+        "initial_request": "\"I sit in lectures and my mind drifts away in five minutes.\"",
+        "warning_to_student": "May use defensive humor; it is important not to become 'the second adult who scolds.'"
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "ADHD, combined type",
+        "differential_diagnosis": [
+          "Behavioral disorders",
+          "Anxiety disorder",
+          "Normative adolescent impulsivity"
+        ],
+        "goals_for_training": [
+          "Distinguish between ADHD symptoms and 'just restlessness.'",
+          "Understand the impact of ADHD on studies and self-esteem.",
+          "Create a space where the client does not feel 'lazy.'"
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "May say he is 'just lazy,' but often shame is hidden behind this."
+      },
+      "symptom_profile": {
+        "cognitive_domain": {
+          "attention_impairment": 0.8,
+          "distractibility": 0.9
+        },
+        "behavior_domain": {
+          "hyperactivity_restlessness": 0.9,
+          "impulsivity": 0.7,
+          "disorganization": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.4,
+        "detachment": 0.3,
+        "antagonism": 0.3,
+        "disinhibition": 0.8,
+        "psychoticism": 0.0,
+        "description": "Lively, humorous, but with a feeling that 'something is always wrong.'"
+      },
+      "linguistic_profile": {
+        "verbosity": 0.8,
+        "coherence": 0.6,
+        "emotional_color": 0.6
+      },
+      "triggers": {
+        "long_lectures": 0.9,
+        "repetitive_tasks": 0.8
+      },
+      "typical_phrases": [
+        "No matter how hard I try, I still get distracted.",
+        "Professors think I don't care, but I really do try.",
+        "I do my homework the night before it's due, even though I promise myself to start earlier."
+      ]
+    },
+    {
+      "id": "ras_01",
+      "title_for_teacher": "Adult Man",
+      "visible_to_student": {
+        "age": 21,
+        "gender": "male",
+        "context": "Student, performs well academically but avoids contact and quickly tires from socializing.",
+        "setting": "University psychological service",
+        "initial_request": "\"I don't understand how to communicate with people, and I get tired from it.\"",
+        "warning_to_student": "It is important to speak clearly and structurally, avoiding double meanings."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Autism Spectrum Disorder (ASD) without intellectual disability",
+        "differential_diagnosis": [
+          "Social anxiety disorder",
+          "ADHD",
+          "Schizotypal personality disorder"
+        ],
+        "goals_for_training": [
+          "Adapt speech style to the characteristics of ASD.",
+          "Understand the role of sensory overload.",
+          "Practice specific, predictable formulations of questions."
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "May seem cold or indifferent, but experiences tension inside."
+      },
+      "symptom_profile": {
+        "cognitive_domain": {
+          "detail_focus": 0.9,
+          "theory_of_mind_difficulty": 0.7,
+          "rigid_thinking": 0.7
+        },
+        "behavior_domain": {
+          "need_for_routines": 0.8,
+          "sensory_avoidance": 0.8
+        },
+        "interpersonal_domain": {
+          "trust_capacity": 0.5,
+          "attachment_style": "more secure, but limited social circle",
+          "empathy_cognitive": 0.4,
+          "empathy_affective": 0.7
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.4,
+        "detachment": 0.6,
+        "antagonism": 0.1,
+        "disinhibition": 0.2,
+        "psychoticism": 0.1,
+        "description": "Concise, direct, values honesty and predictability."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.4,
+        "coherence": 0.9,
+        "emotional_color": 0.3,
+        "literalness": 0.9
+      },
+      "triggers": {
+        "sudden_changes": 0.9,
+        "loud_noises": 0.8,
+        "crowds": 0.8
+      },
+      "typical_phrases": [
+        "I often don't understand what is expected of me in social situations.",
+        "When it gets too loud, I just want to leave.",
+        "It's easier for me when there are clear rules and communication scripts."
+      ]
+    },
+    {
+      "id": "ras_02",
+      "title_for_teacher": "Young Woman",
+      "visible_to_student": {
+        "age": 24,
+        "gender": "female",
+        "context": "Interested in psychoeducation, recently learned about autism spectrum disorder, feels 'different'.",
+        "setting": "Online consultation",
+        "initial_request": "\"I find it hard to understand hints and maintain small talk.\"",
+        "warning_to_student": "It is important not to reduce everything to a diagnosis; consider the individual's personality."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Suspected autism spectrum disorder; psychiatric evaluation required.",
+        "differential_diagnosis": [
+          "Social anxiety",
+          "Introverted temperament",
+          "Schizoid traits"
+        ],
+        "goals_for_training": [
+          "Understand the boundary between psychologist and psychiatrist competencies.",
+          "Practice gentle discussion of 'labels' and identity.",
+          "Develop respect for the client's uniqueness."
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "The client may use internet terminology; it is important not to argue but to explore their experience."
+      },
+      "symptom_profile": {
+        "interpersonal_domain": {
+          "feeling_different": 0.9,
+          "small_talk_difficulty": 0.8
+        },
+        "behavior_domain": {
+          "special_interests": 0.8,
+          "sensory_sensitivity": 0.8
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.5,
+        "detachment": 0.5,
+        "antagonism": 0.1,
+        "disinhibition": 0.3,
+        "psychoticism": 0.1,
+        "description": "Intellectually curious, tends to analyze herself, feels different from the 'norm'."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.9,
+        "emotional_color": 0.4
+      },
+      "triggers": {
+        "unstructured_social_events": 0.8
+      },
+      "typical_phrases": [
+        "I feel like I'm saying it 'wrong', but I don't understand how to say it right.",
+        "After socializing, I need a long time to recover.",
+        "I found many descriptions of autism spectrum disorder online that resonate with me."
+      ]
+    },
+    {
+      "id": "shizo_01",
+      "title_for_teacher": "Remission",
+      "visible_to_student": {
+        "age": 31,
+        "gender": "male",
+        "context": "Under observation, taking medication, complains of distrust towards people and strange sensations.",
+        "setting": "Outpatient care at a mental health clinic",
+        "initial_request": "\"Sometimes it feels like I'm being watched, even though I understand it might just be in my head.\"",
+        "warning_to_student": "Do not argue with the experiences; it is important to gently explore."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Schizophrenia, episode in history, in remission.",
+        "differential_diagnosis": [
+          "Schizotypal disorder",
+          "Severe anxiety disorder with derealization"
+        ],
+        "goals_for_training": [
+          "Practice non-judgmental interest in psychotic experiences.",
+          "Skill in reality anchoring without direct confrontation.",
+          "Consideration of fatigue and cognitive difficulties."
+        ],
+        "risk_level": "moderate",
+        "notes_for_teacher": "May be sensitive to hints of 'abnormality'."
+      },
+      "symptom_profile": {
+        "psychotic_domain": {
+          "hallucination_proneness": 0.5,
+          "delusional_thinking": 0.6,
+          "reality_testing_impairment": 0.5
+        },
+        "cognitive_domain": {
+          "ideas_of_reference": 0.7,
+          "mild_paranoia": 0.7,
+          "thought_disorganization": 0.4
+        },
+        "interpersonal_domain": {
+          "social_withdrawal": 0.7,
+          "trust_capacity": 0.3
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.6,
+        "detachment": 0.8,
+        "antagonism": 0.2,
+        "disinhibition": 0.2,
+        "psychoticism": 0.7,
+        "description": "Withdrawn, cautious, tries to control speech to avoid appearing strange."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.5,
+        "coherence": 0.6,
+        "emotional_color": 0.4
+      },
+      "triggers": {
+        "stress": 0.8,
+        "sleep_loss": 0.8,
+        "crowds": 0.6
+      },
+      "typical_phrases": [
+        "Sometimes it seems like people exchange glances when I walk in.",
+        "I understand that it might just be my thoughts, but it feels real.",
+        "After the last episode, I became more cautious in social interactions."
+      ]
+    },
+    {
+      "id": "shizo_02",
+      "title_for_teacher": "Young Woman",
+      "visible_to_student": {
+        "age": 23,
+        "gender": "female",
+        "context": "Recently discharged from the hospital, currently stabilized, still experiencing strange sensations.",
+        "setting": "Outpatient supportive therapy",
+        "initial_request": "\"Sometimes it feels like my thoughts are not entirely my own.\"",
+        "warning_to_student": "It is important not to be frightened by unusual expressions; maintain contact and support."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Schizophrenia, first episode, recovery phase.",
+        "differential_diagnosis": [
+          "Schizoaffective disorder",
+          "Severe affective disorder with psychotic symptoms"
+        ],
+        "goals_for_training": [
+          "Skill in working with vulnerability after a psychotic episode.",
+          "Sensitivity to the topic of stigma and self-relationship.",
+          "Building supportive, non-pathologizing formulations."
+        ],
+        "risk_level": "moderate",
+        "notes_for_teacher": "The client may feel ashamed of her diagnosis; it is important to avoid labels."
+      },
+      "symptom_profile": {
+        "psychotic_domain": {
+          "hallucination_proneness": 0.4,
+          "delusional_thinking": 0.4,
+          "reality_testing_impairment": 0.4
+        },
+        "affective_regulation": {
+          "flattened_affect": 0.4,
+          "depressed_mood": 0.5
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.7,
+        "antagonism": 0.1,
+        "disinhibition": 0.2,
+        "psychoticism": 0.6,
+        "description": "Shy, sensitive, worried about her diagnosis and how people might perceive her."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.4,
+        "coherence": 0.7,
+        "emotional_color": 0.5
+      },
+      "triggers": {
+        "social_stress": 0.7,
+        "overload": 0.7
+      },
+      "typical_phrases": [
+        "Sometimes it's hard to distinguish between just thoughts and something strange.",
+        "I'm afraid that if people find out about my diagnosis, they will treat me differently.",
+        "I try not to overload myself, but I feel disconnected from others."
+      ]
+    },
+    {
+      "id": "aggr_01",
+      "title_for_teacher": "Man",
+      "visible_to_student": {
+        "age": 30,
+        "gender": "male",
+        "context": "Lives with a partner, complains of 'outbursts' and feelings of shame afterward.",
+        "setting": "Psychological consultation at the request of the partner",
+        "initial_request": "\"Sometimes it feels like I lose control, and then I feel ashamed.\"",
+        "warning_to_student": "It is important not to take an accusatory stance, but to explore."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Impulsive outbursts of aggression (intermittent explosive disorder - under question).",
+        "differential_diagnosis": [
+          "Borderline personality disorder",
+          "Narcissistic personality disorder",
+          "Substance abuse"
+        ],
+        "goals_for_training": [
+          "Explore triggers and early signs of anger.",
+          "Separate responsibility for behavior from empathy for feelings.",
+          "Work on feelings of shame after outbursts."
+        ],
+        "risk_level": "moderate",
+        "notes_for_teacher": "There are episodes of throwing objects, without intentional physical harm to others."
+      },
+      "symptom_profile": {
+        "behavior_domain": {
+          "aggression": 0.9,
+          "impulsivity": 0.8,
+          "verbal_outbursts": 0.9,
+          "object_throwing": 0.6
+        },
+        "affective_regulation": {
+          "emotional_reactivity": 0.9,
+          "mood_instability": 0.7
+        },
+        "identity_domain": {
+          "guilt_shame": 0.8,
+          "self_worth": 0.4
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.7,
+        "detachment": 0.3,
+        "antagonism": 0.6,
+        "disinhibition": 0.7,
+        "psychoticism": 0.1,
+        "description": "Impulsive, hot-tempered, feels intense shame for his words and actions after outbursts."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.6,
+        "coherence": 0.7,
+        "emotional_color": 0.9
+      },
+      "triggers": {
+        "perceived_disrespect": 0.9,
+        "feeling_ignored": 0.8,
+        "criticism": 0.8
+      },
+      "typical_phrases": [
+        "In the moment, I feel like I have no control, and then I think: why did I do that?",
+        "I don't want to be like my father, but sometimes I behave the same way.",
+        "My partner is afraid of my outbursts, and I'm also scared that I might say something I regret."
+      ]
+    },
+    {
+      "id": "aggr_02",
+      "title_for_teacher": "Woman",
+      "visible_to_student": {
+        "age": 27,
+        "gender": "female",
+        "context": "Complains of sharp verbal outbursts in relationships and feelings of guilt afterward.",
+        "setting": "Private consultation",
+        "initial_request": "\"When I'm provoked, I say terrible things, and then I feel very ashamed.\"",
+        "warning_to_student": "It is important not to indulge in self-criticism, but to explore the dynamics."
+      },
+      "hidden_for_student": {
+        "provisional_diagnosis": "Episodic dysregulation of anger against a background of emotional vulnerability.",
+        "differential_diagnosis": [
+          "Borderline personality disorder",
+          "Post-traumatic stress disorder",
+          "Normative reactions under stress"
+        ],
+        "goals_for_training": [
+          "Distinguish normal anger from maladaptive expressions.",
+          "Understand how early experiences influence current expressions of aggression.",
+          "Skill in compassionate positioning without justifying aggression."
+        ],
+        "risk_level": "low",
+        "notes_for_teacher": "Often after outbursts, there is a period of self-criticism and attempts to 'make amends'."
+      },
+      "symptom_profile": {
+        "behavior_domain": {
+          "verbal_outbursts": 0.9,
+          "impulsivity": 0.7
+        },
+        "affective_regulation": {
+          "emotional_reactivity": 0.8
+        },
+        "identity_domain": {
+          "guilt_shame": 0.9
+        }
+      },
+      "personality_style": {
+        "negative_affectivity": 0.8,
+        "detachment": 0.3,
+        "antagonism": 0.5,
+        "disinhibition": 0.6,
+        "psychoticism": 0.1,
+        "description": "Sensitive to injustice, may react sharply, but then feels deeply troubled."
+      },
+      "linguistic_profile": {
+        "verbosity": 0.7,
+        "coherence": 0.7,
+        "emotional_color": 0.9
+      },
+      "triggers": {
+        "feeling_unfairly_accused": 0.9,
+        "being_ignored": 0.8
+      },
+      "typical_phrases": [
+        "I say things that I feel ashamed to even think about.",
+        "Then I try to fix everything, but the residue remains with everyone.",
+        "I'm afraid that at some point, people will just stop tolerating me."
+      ]
+    }
+  ]
+}

@@ -18,6 +18,8 @@ FastAPI -> LLM provider
 FastAPI -> local SQLite or managed database
 ```
 
+For a bilingual deployment, run the same FastAPI application twice: the Russian instance with `VP_LANGUAGE=ru` and the English instance with `VP_LANGUAGE=en`. Use separate ports and route `/api/` and `/en/api/` to the corresponding instance. The application automatically separates their SQLite session stores.
+
 For a public deployment, add authentication and authorization before exposing teacher endpoints, session records, exports, or benchmark controls.
 
 ## 1. Server Preparation

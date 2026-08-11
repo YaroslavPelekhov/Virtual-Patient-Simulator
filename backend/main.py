@@ -90,6 +90,13 @@ CORS_ALLOW_ORIGINS = [
     for origin in os.getenv("CORS_ALLOW_ORIGINS", "*").split(",")
     if origin.strip()
 ] or ["*"]
+VP_LANGUAGE = os.getenv("VP_LANGUAGE", "ru").strip().lower()
+IS_ENGLISH = VP_LANGUAGE.startswith("en")
+
+
+def _l(ru: str, en: str) -> str:
+    """Return a localized runtime string for the selected backend instance."""
+    return en if IS_ENGLISH else ru
 
 # Token cache (in-memory)
 _token_cache: Dict[str, Any] = {"access_token": None, "expires_at": 0.0}
@@ -406,24 +413,40 @@ def llm_chat_completions(
 # ============================================================
 
 BASE_DIR = Path(__file__).resolve().parent
-SESSIONS_DB_PATH = BASE_DIR / "sessions.db"
-LEGACY_SESSIONS_STORE_PATH = BASE_DIR / "sessions_store.json"
+SESSIONS_DB_PATH = BASE_DIR / ("sessions.en.db" if IS_ENGLISH else "sessions.db")
+LEGACY_SESSIONS_STORE_PATH = BASE_DIR / ("sessions_store.en.json" if IS_ENGLISH else "sessions_store.json")
 SESSIONS_LOCK = threading.Lock()
-with open(BASE_DIR / "virtual_patient_cases.json", "r", encoding="utf-8") as f:
+cases_filename = "virtual_patient_cases.en.json" if IS_ENGLISH else "virtual_patient_cases.json"
+with open(BASE_DIR / cases_filename, "r", encoding="utf-8") as f:
     CASES_RAW = json.load(f)["cases"]
 
-CATEGORY_LABELS = {
-    "ras": "РАС",
-    "sdvg": "СДВГ",
-    "okr": "ОКР",
-    "ptsd": "ПТСР",
-    "prl": "ПРЛ",
-    "nrl": "НРЛ",
-    "gtr": "ГТР",
-    "panic": "Панические атаки",
-    "shizo": "Шизофрения",
-    "aggr": "Вспышки агрессии",
-}
+CATEGORY_LABELS = (
+    {
+        "ras": "Autism spectrum disorder",
+        "sdvg": "ADHD",
+        "okr": "Obsessive-compulsive disorder",
+        "ptsd": "Post-traumatic stress disorder",
+        "prl": "Borderline personality disorder",
+        "nrl": "Narcissistic personality disorder",
+        "gtr": "Generalized anxiety disorder",
+        "panic": "Panic attacks",
+        "shizo": "Schizophrenia",
+        "aggr": "Aggressive outbursts",
+    }
+    if IS_ENGLISH
+    else {
+        "ras": "РАС",
+        "sdvg": "СДВГ",
+        "okr": "ОКР",
+        "ptsd": "ПТСР",
+        "prl": "ПРЛ",
+        "nrl": "НРЛ",
+        "gtr": "ГТР",
+        "panic": "Панические атаки",
+        "shizo": "Шизофрения",
+        "aggr": "Вспышки агрессии",
+    }
+)
 
 # 10 направлений методологий для устойчивой оценки приверженности
 METHODOLOGY_BY_CATEGORY: Dict[str, Dict[str, str]] = {
@@ -432,8 +455,8 @@ METHODOLOGY_BY_CATEGORY: Dict[str, Dict[str, str]] = {
     "panic": {"id": "cbt", "name": "CBT"},
     "okr": {"id": "cbt", "name": "CBT"},
     "aggr": {"id": "cbt", "name": "CBT"},
-    "shizo": {"id": "pharm_psych", "name": "Фармакология + психология"},
-    "sdvg": {"id": "cbt_pharm", "name": "CBT + фармакология"},
+    "shizo": {"id": "pharm_psych", "name": _l("Фармакология + психология", "Pharmacology + psychology")},
+    "sdvg": {"id": "cbt_pharm", "name": _l("CBT + фармакология", "CBT + pharmacology")},
     "ptsd": {"id": "dbt", "name": "DBT"},
     "gtr": {"id": "cbt", "name": "CBT"},
     "ras": {"id": "aba", "name": "ABA"},
@@ -443,7 +466,7 @@ METHOD_NAME_BY_ID: Dict[str, str] = {
     for v in METHODOLOGY_BY_CATEGORY.values()
 }
 
-METHOD_RULES: Dict[str, Dict[str, List[str]]] = {
+METHOD_RULES_RU: Dict[str, Dict[str, List[str]]] = {
     "dbt": {
         "must_do": ["валидация эмоций", "заземление/регуляция", "диалектический баланс принятия и изменений"],
         "must_avoid": ["жесткие директивы без валидации", "обесценивание переживаний"],
@@ -476,7 +499,42 @@ METHOD_RULES: Dict[str, Dict[str, List[str]]] = {
     },
 }
 
-BENCHMARK_UTTERANCES: List[str] = [
+METHOD_RULES_EN: Dict[str, Dict[str, List[str]]] = {
+    "dbt": {
+        "must_do": ["validate emotions", "use grounding or regulation", "balance acceptance and change dialectically"],
+        "must_avoid": ["rigid directives without validation", "dismissal of the patient's experience"],
+        "recommended": ["reflect feelings", "use a stepwise crisis-management plan"],
+    },
+    "emdr": {
+        "must_do": ["focus on the target memory", "check safety and resourcing", "use a structured treatment phase"],
+        "must_avoid": ["unstructured trauma exploration without stabilization", "interpretation unsupported by the patient's experience"],
+        "recommended": ["ask brief clarifying questions about triggers", "monitor distress level"],
+    },
+    "cbt": {
+        "must_do": ["identify automatic thoughts", "examine cognitive distortions", "develop a behavioral plan or experiment"],
+        "must_avoid": ["unstructured supportive conversation only", "categorical advice"],
+        "recommended": ["ask a Socratic question", "suggest between-session practice"],
+    },
+    "cbt_pharm": {
+        "must_do": ["use a CBT session structure", "provide psychoeducation about the treatment regimen", "monitor functioning"],
+        "must_avoid": ["prescribing without a qualified clinician", "ignoring side effects or adherence"],
+        "recommended": ["use behavioral self-regulation techniques", "track symptoms and sleep"],
+    },
+    "pharm_psych": {
+        "must_do": ["provide psychoeducation and reality testing", "assess treatment adherence", "support functional recovery"],
+        "must_avoid": ["direct confrontation of delusional content", "stigmatizing language"],
+        "recommended": ["gently structure the day", "make a plan for early warning signs"],
+    },
+    "aba": {
+        "must_do": ["use antecedent-behavior-consequence analysis", "operationalize the target behavior", "use positive reinforcement"],
+        "must_avoid": ["vague goals without observable criteria", "punitive strategies as the default"],
+        "recommended": ["shape the next skill step", "use measurable behavioral metrics"],
+    },
+}
+
+METHOD_RULES = METHOD_RULES_EN if IS_ENGLISH else METHOD_RULES_RU
+
+BENCHMARK_UTTERANCES_RU: List[str] = [
     "Похоже, вам сейчас тяжело. Что вы чувствуете в этот момент?",
     "Давайте разберем, какие мысли появляются прямо перед этим.",
     "Вы должны просто перестать так делать и взять себя в руки.",
@@ -486,6 +544,19 @@ BENCHMARK_UTTERANCES: List[str] = [
     "Какие доказательства есть за и против этой мысли?",
     "Давайте пошагово определим один маленький следующий шаг.",
 ]
+
+BENCHMARK_UTTERANCES_EN: List[str] = [
+    "It sounds like things are difficult right now. What are you feeling in this moment?",
+    "Let's examine which thoughts appear immediately before this happens.",
+    "You should simply stop doing that and pull yourself together.",
+    "What happened before this episode, and what happened immediately afterward?",
+    "I want you to feel safe. What might help you feel more grounded right now?",
+    "It is not that important; many people experience this.",
+    "What evidence supports this thought, and what evidence goes against it?",
+    "Let's identify one small next step together.",
+]
+
+BENCHMARK_UTTERANCES = BENCHMARK_UTTERANCES_EN if IS_ENGLISH else BENCHMARK_UTTERANCES_RU
 
 
 def infer_category(case_id: str) -> str:
@@ -615,6 +686,91 @@ SESSION_REPORT_PROMPT = """
     }
   ]
 }
+""".strip()
+
+if IS_ENGLISH:
+    BASE_SYSTEM_PROMPT = """
+You are a VIRTUAL PATIENT in a training consultation with a psychology student.
+
+GENERAL RULES:
+- Respond as a real person would during an initial consultation.
+- Never say that you are a model, AI system, simulation, or program.
+- Do not use professional psychiatric terminology unless the student introduces it first.
+- Do not teach the student how to provide help. Speak only from the client's perspective.
+- Do not encourage self-treatment or give advice about medication, dosage, or diagnosis.
+- If the student asks directly about a diagnosis, say that you have read or heard about it but are unsure whether it applies, or refer to the qualified clinician who discussed it with you.
+
+PATIENT PROFILE:
+You will receive a case profile describing symptoms, personality style, typical expressions, interpersonal style, and triggers. Follow this profile closely and consistently.
+
+EMOTIONAL STATE:
+The current trust, emotional intensity, and fatigue levels are provided on a 0-3 scale.
+- At higher trust, become more open, give slightly fuller answers, and share more feelings.
+- At low trust, remain reserved and answer more briefly.
+- At high fatigue, convey that thinking and finding words is difficult.
+- At high emotional intensity, respond more emotionally, but never provide detailed descriptions of self-harm, violence, or suicide methods.
+
+RESPONSE STYLE:
+- Use natural, conversational English.
+- Respond in 2-3 sentences and do not over-explain without a reason.
+- Ask for clarification if the student's question is unclear.
+
+SAFETY:
+- Discuss suicidal themes only in general terms and never describe methods.
+- Never endorse dangerous behavior.
+
+Always respond as the patient defined by the supplied profile and never leave the role.
+""".strip()
+
+    SUPERVISOR_PROMPT = """
+You are a clinical supervisor evaluating one therapist utterance in a training consultation.
+
+Using only the therapist's message and the patient's brief current state, return STRICT JSON with exactly these fields:
+{
+  "delta_trust": -1 | 0 | 1,
+  "delta_emotional_intensity": -1 | 0 | 1,
+  "delta_fatigue": -1 | 0 | 1,
+  "empathy": float,
+  "validation": float,
+  "directivity": float,
+  "open_question": float,
+  "safety": float,
+  "efficiency_index": float,
+  "comment": str
+}
+
+Use 0.0-1.0 for empathy, validation, directivity, open_question, and safety, and -1.0-1.0 for efficiency_index. The comment must be a concise 1-3 sentence analysis in English.
+
+Definitions:
+- empathy: accurate reflection of feelings and demonstrated understanding.
+- validation: acceptance and normalization of the patient's experience.
+- directivity: amount of advice, instruction, or commanding language.
+- open_question: use of questions inviting elaboration rather than yes/no answers.
+- safety: absence of dismissal, pressure, or unsafe recommendations.
+- efficiency_index: overall usefulness combining empathy, validation, open questions, and low coercive pressure.
+
+Evaluate only the supplied therapist message. Return JSON only, without markdown or additional explanation.
+""".strip()
+
+    SESSION_REPORT_PROMPT = """
+You are supervising a psychology student's training consultation. Produce detailed, evidence-based feedback in English.
+
+You will receive aggregate session metrics, skill trends, supervisor comments on individual turns, and a dialogue excerpt.
+
+Return STRICT JSON without markdown:
+{
+  "overall_impression": "3-5 sentences analyzing rapport dynamics and session style",
+  "recommendations": "4-6 prioritized, concrete actions for the next session",
+  "improved_examples": [
+    {
+      "original_replica": "string",
+      "better_replica": "string",
+      "why_better": "string"
+    }
+  ]
+}
+
+Write professionally but naturally. Avoid generic templates. Draw conclusions only from the supplied data and do not invent facts.
 """.strip()
 
 RAVRS_CANDIDATE_PROMPT = """
@@ -1193,13 +1349,20 @@ def evaluate_therapist_message(
     """
     Оценка хода психолога через LLM-супервизора.
     """
-    state_desc = (
-        f"Текущее состояние пациента: доверие={prev_state['trust_level']} (0–3), "
-        f"эмоциональная интенсивность={prev_state['emotional_intensity']} (0–3), "
-        f"усталость={prev_state['fatigue']} (0–3)."
-    )
-
-    user_content = state_desc + "\n\nРеплика психолога:\n" + message
+    if IS_ENGLISH:
+        state_desc = (
+            f"Current patient state: trust={prev_state['trust_level']} (0-3), "
+            f"emotional intensity={prev_state['emotional_intensity']} (0-3), "
+            f"fatigue={prev_state['fatigue']} (0-3)."
+        )
+        user_content = state_desc + "\n\nTherapist utterance:\n" + message
+    else:
+        state_desc = (
+            f"Текущее состояние пациента: доверие={prev_state['trust_level']} (0–3), "
+            f"эмоциональная интенсивность={prev_state['emotional_intensity']} (0–3), "
+            f"усталость={prev_state['fatigue']} (0–3)."
+        )
+        user_content = state_desc + "\n\nРеплика психолога:\n" + message
 
     try:
         raw = llm_chat_completions(
@@ -1226,7 +1389,10 @@ def evaluate_therapist_message(
             "open_question": 0.0,
             "safety": 1.0,
             "efficiency_index": 0.0,
-            "comment": "Не удалось вычислить оценку, используйте этот ход только как тренировочный.",
+            "comment": _l(
+                "Не удалось вычислить оценку, используйте этот ход только как тренировочный.",
+                "The evaluation could not be computed; treat this turn as training material only.",
+            ),
         }
 
     def clamp(v, lo, hi, default=0.0):
@@ -1247,7 +1413,7 @@ def evaluate_therapist_message(
     safety = clamp(data.get("safety", 1.0), 0.0, 1.0, 1.0)
     efficiency_index = clamp(data.get("efficiency_index", 0.0), -1.0, 1.0, 0.0)
 
-    comment = str(data.get("comment", "")).strip() or "Нейтральный ход."
+    comment = str(data.get("comment", "")).strip() or _l("Нейтральный ход.", "Neutral turn.")
 
     return TurnEvaluation(
         delta_trust=delta_trust,
@@ -1275,24 +1441,42 @@ def build_messages(
     history: List[Dict[str, str]],
 ) -> List[Dict[str, str]]:
 
-    profile_text = (
-        "ПРОФИЛЬ СЛУЧАЯ (для внутреннего использования модели):\n"
-        f"- id: {case_profile['id']}\n"
-        f"- Клиническое название: {case_profile['title_for_teacher']}\n"
-        f"- Симптомы: {json.dumps(case_profile['symptom_profile'], ensure_ascii=False)}\n"
-        f"- Личностный стиль: {json.dumps(case_profile['personality_style'], ensure_ascii=False)}\n"
-        f"- Типичные фразы: {json.dumps(case_profile['typical_phrases'], ensure_ascii=False)}\n"
-        f"- Триггеры: {json.dumps(case_profile['triggers'], ensure_ascii=False)}\n"
-        "Отвечай строго в соответствии с этим профилем.\n"
-    )
-
-    state_text = (
-        "ТЕКУЩЕЕ СОСТОЯНИЕ ПАЦИЕНТА:\n"
-        f"- доверие (0-3): {state['trust_level']}\n"
-        f"- эмоциональная интенсивность (0-3): {state['emotional_intensity']}\n"
-        f"- усталость (0-3): {state['fatigue']}\n"
-        "Сделай тон, длину и степень откровенности ответа соответствующими этому состоянию.\n"
-    )
+    if IS_ENGLISH:
+        profile_text = (
+            "CASE PROFILE (for internal model use):\n"
+            f"- id: {case_profile['id']}\n"
+            f"- Clinical title: {case_profile['title_for_teacher']}\n"
+            f"- Symptoms: {json.dumps(case_profile['symptom_profile'], ensure_ascii=False)}\n"
+            f"- Personality style: {json.dumps(case_profile['personality_style'], ensure_ascii=False)}\n"
+            f"- Typical expressions: {json.dumps(case_profile['typical_phrases'], ensure_ascii=False)}\n"
+            f"- Triggers: {json.dumps(case_profile['triggers'], ensure_ascii=False)}\n"
+            "Respond strictly in accordance with this profile and only in English.\n"
+        )
+        state_text = (
+            "CURRENT PATIENT STATE:\n"
+            f"- trust (0-3): {state['trust_level']}\n"
+            f"- emotional intensity (0-3): {state['emotional_intensity']}\n"
+            f"- fatigue (0-3): {state['fatigue']}\n"
+            "Match the response tone, length, and openness to this state.\n"
+        )
+    else:
+        profile_text = (
+            "ПРОФИЛЬ СЛУЧАЯ (для внутреннего использования модели):\n"
+            f"- id: {case_profile['id']}\n"
+            f"- Клиническое название: {case_profile['title_for_teacher']}\n"
+            f"- Симптомы: {json.dumps(case_profile['symptom_profile'], ensure_ascii=False)}\n"
+            f"- Личностный стиль: {json.dumps(case_profile['personality_style'], ensure_ascii=False)}\n"
+            f"- Типичные фразы: {json.dumps(case_profile['typical_phrases'], ensure_ascii=False)}\n"
+            f"- Триггеры: {json.dumps(case_profile['triggers'], ensure_ascii=False)}\n"
+            "Отвечай строго в соответствии с этим профилем.\n"
+        )
+        state_text = (
+            "ТЕКУЩЕЕ СОСТОЯНИЕ ПАЦИЕНТА:\n"
+            f"- доверие (0-3): {state['trust_level']}\n"
+            f"- эмоциональная интенсивность (0-3): {state['emotional_intensity']}\n"
+            f"- усталость (0-3): {state['fatigue']}\n"
+            "Сделай тон, длину и степень откровенности ответа соответствующими этому состоянию.\n"
+        )
 
     # ВАЖНО: один system и он первый
     system_msg = {
@@ -1341,7 +1525,7 @@ def build_ravr_chunks(case_id: str, ev: Optional[TurnEvaluation]) -> List[RavrCh
             RavrChunk(
                 chunk_id=f"{method_id}_must_do_{idx}",
                 source_type="method_rule",
-                text=f"Обязательное правило: {item}",
+                text=f"{_l('Обязательное правило', 'Required rule')}: {item}",
             )
         )
     for idx, item in enumerate(rules.get("must_avoid", []), start=1):
@@ -1349,7 +1533,7 @@ def build_ravr_chunks(case_id: str, ev: Optional[TurnEvaluation]) -> List[RavrCh
             RavrChunk(
                 chunk_id=f"{method_id}_must_avoid_{idx}",
                 source_type="method_rule",
-                text=f"Избегать: {item}",
+                text=f"{_l('Избегать', 'Avoid')}: {item}",
             )
         )
     for idx, item in enumerate(rules.get("recommended", []), start=1):
@@ -1357,13 +1541,13 @@ def build_ravr_chunks(case_id: str, ev: Optional[TurnEvaluation]) -> List[RavrCh
             RavrChunk(
                 chunk_id=f"{method_id}_recommended_{idx}",
                 source_type="method_rule",
-                text=f"Рекомендуется: {item}",
+                text=f"{_l('Рекомендуется', 'Recommended')}: {item}",
             )
         )
 
     if ev is not None:
         metric_text = (
-            f"Метрики хода: empathy={ev.empathy}, validation={ev.validation}, directivity={ev.directivity}, "
+            f"{_l('Метрики хода', 'Turn metrics')}: empathy={ev.empathy}, validation={ev.validation}, directivity={ev.directivity}, "
             f"open_question={ev.open_question}, safety={ev.safety}, efficiency_index={ev.efficiency_index}."
         )
         chunks.append(
@@ -1392,23 +1576,23 @@ def _tokenize_for_overlap(text: str) -> set:
 def _violation_tags(v: str) -> set:
     t = str(v).lower()
     tags = set()
-    if "директив" in t:
+    if "директив" in t or "directiv" in t:
         tags.add("directivity")
-    if "эмпат" in t or "валидац" in t:
+    if "эмпат" in t or "валидац" in t or "empath" in t or "validat" in t:
         tags.add("empathy")
-    if "открыт" in t:
+    if "открыт" in t or "open question" in t:
         tags.add("open_question")
-    if "безопас" in t:
+    if "безопас" in t or "safety" in t or "unsafe" in t:
         tags.add("safety")
-    if "цитат" in t:
+    if "цитат" in t or "citation" in t:
         tags.add("citation")
-    if "когнитив" in t or "мысл" in t or "искаж" in t:
+    if "когнитив" in t or "мысл" in t or "искаж" in t or "cognit" in t or "thought" in t or "distortion" in t:
         tags.add("cbt")
-    if "dbt" in t or "регуляц" in t:
+    if "dbt" in t or "регуляц" in t or "regulat" in t or "ground" in t:
         tags.add("dbt")
-    if "emdr" in t or "дистресс" in t or "памят" in t or "триггер" in t:
+    if "emdr" in t or "дистресс" in t or "памят" in t or "триггер" in t or "distress" in t or "memory" in t or "trigger" in t:
         tags.add("emdr")
-    if "aba" in t or "поведен" in t:
+    if "aba" in t or "поведен" in t or "behavior" in t or "antecedent" in t:
         tags.add("aba")
     return tags
 
@@ -1416,20 +1600,20 @@ def _violation_tags(v: str) -> set:
 def _chunk_tags(chunk: RavrChunk) -> set:
     t = f"{chunk.chunk_id} {chunk.text}".lower()
     tags = set()
-    if "must_avoid" in t or "избегать" in t:
+    if "must_avoid" in t or "избегать" in t or "avoid" in t:
         tags.add("directivity")
-    if "must_do" in t or "обязательное" in t:
+    if "must_do" in t or "обязательное" in t or "required rule" in t:
         tags.add("open_question")
         tags.add("safety")
-    if "эмпат" in t or "валидац" in t:
+    if "эмпат" in t or "валидац" in t or "empath" in t or "validat" in t:
         tags.add("empathy")
-    if "когнитив" in t or "мысл" in t:
+    if "когнитив" in t or "мысл" in t or "cognit" in t or "thought" in t:
         tags.add("cbt")
-    if "dbt" in t or "регуляц" in t:
+    if "dbt" in t or "регуляц" in t or "regulat" in t or "ground" in t:
         tags.add("dbt")
-    if "emdr" in t or "дистресс" in t or "триггер" in t:
+    if "emdr" in t or "дистресс" in t or "триггер" in t or "distress" in t or "trigger" in t:
         tags.add("emdr")
-    if "aba" in t or "поведен" in t:
+    if "aba" in t or "поведен" in t or "behavior" in t or "antecedent" in t:
         tags.add("aba")
     return tags
 
@@ -1489,13 +1673,13 @@ def _pick_citations(method_id: str, violations: List[str], satisfied: List[str],
     picked: List[str] = []
     for v in violations:
         v_l = v.lower()
-        if "директив" in v_l:
+        if "директив" in v_l or "directiv" in v_l:
             picked.extend([f"{method_id}_must_avoid_1", f"{method_id}_recommended_1"])
-        elif "открыт" in v_l:
+        elif "открыт" in v_l or "open question" in v_l:
             picked.extend([f"{method_id}_must_do_1", f"{method_id}_recommended_1"])
-        elif "безопас" in v_l:
+        elif "безопас" in v_l or "safety" in v_l or "unsafe" in v_l:
             picked.extend([f"{method_id}_must_avoid_1", f"{method_id}_must_do_1"])
-        elif "эмпат" in v_l:
+        elif "эмпат" in v_l or "empath" in v_l or "validat" in v_l:
             picked.extend([f"{method_id}_must_do_1", f"{method_id}_recommended_1"])
 
     if not picked and satisfied:
@@ -1946,14 +2130,29 @@ def _build_method_specific_fallback(
 
     # Method-specific deterministic fallback (non-generic, methodology-aligned)
     if method_id == "cbt":
-        return "Похоже, сейчас это тяжело для вас. Какая автоматическая мысль возникает в этот момент сильнее всего?"
+        return _l(
+            "Похоже, сейчас это тяжело для вас. Какая автоматическая мысль возникает в этот момент сильнее всего?",
+            "It sounds like this is difficult right now. Which automatic thought feels strongest in this moment?",
+        )
     if method_id == "dbt":
-        return "Похоже, вам сейчас действительно непросто. Что вы замечаете в теле прямо сейчас и что помогает немного стабилизироваться?"
+        return _l(
+            "Похоже, вам сейчас действительно непросто. Что вы замечаете в теле прямо сейчас и что помогает немного стабилизироваться?",
+            "It sounds like this is very difficult right now. What do you notice in your body that might help you feel more grounded?",
+        )
     if method_id == "emdr":
-        return "Похоже, это поднимает сильный дистресс. Когда вы вспоминаете эпизод, какой триггер ощущается самым сильным сейчас?"
+        return _l(
+            "Похоже, это поднимает сильный дистресс. Когда вы вспоминаете эпизод, какой триггер ощущается самым сильным сейчас?",
+            "It sounds like this brings up considerable distress. When you recall the episode, which trigger feels strongest right now?",
+        )
     if method_id == "aba":
-        return "Похоже, эта ситуация даётся непросто. Что произошло прямо до реакции и что было сразу после?"
-    return "Похоже, вам сейчас непросто. Что для вас в этой ситуации самое тяжёлое прямо сейчас?"
+        return _l(
+            "Похоже, эта ситуация даётся непросто. Что произошло прямо до реакции и что было сразу после?",
+            "It sounds like this situation is difficult. What happened immediately before the reaction, and what happened right afterward?",
+        )
+    return _l(
+        "Похоже, вам сейчас непросто. Что для вас в этой ситуации самое тяжёлое прямо сейчас?",
+        "It sounds like things are difficult right now. What feels hardest about this situation at the moment?",
+    )
 
 
 def _pairwise_human_pref_judge(
@@ -2041,24 +2240,45 @@ def _build_repaired_message(
     interaction_state: Optional[Dict[str, int]] = None,
     llm_provider: Optional[str] = None,
 ) -> RepairSuggestion:
-    base = "Похоже, вам сейчас правда непросто. Я хочу лучше понять ваш опыт и поддержать вас."
-    tail = "Что для вас в этом сейчас самое тяжёлое?"
+    base = _l(
+        "Похоже, вам сейчас правда непросто. Я хочу лучше понять ваш опыт и поддержать вас.",
+        "It sounds like this is genuinely difficult right now. I want to understand your experience and support you.",
+    )
+    tail = _l("Что для вас в этом сейчас самое тяжёлое?", "What feels hardest about this right now?")
     if method_id == "cbt":
-        tail = "Какая мысль в этот момент звучит у вас сильнее всего и что вы чувствуете?"
+        tail = _l(
+            "Какая мысль в этот момент звучит у вас сильнее всего и что вы чувствуете?",
+            "Which thought feels strongest in that moment, and what do you notice emotionally?",
+        )
     elif method_id == "dbt":
-        tail = "Что вы сейчас чувствуете в теле и что обычно помогает вам немного стабилизироваться?"
+        tail = _l(
+            "Что вы сейчас чувствуете в теле и что обычно помогает вам немного стабилизироваться?",
+            "What do you notice in your body right now that might help you feel more grounded?",
+        )
     elif method_id == "emdr":
-        tail = "Когда вы вспоминаете этот эпизод, что сильнее всего поднимает дистресс прямо сейчас?"
+        tail = _l(
+            "Когда вы вспоминаете этот эпизод, что сильнее всего поднимает дистресс прямо сейчас?",
+            "When you recall this episode, what brings up the most distress right now?",
+        )
     elif method_id == "aba":
-        tail = "Что произошло прямо до этой реакции и что было сразу после?"
+        tail = _l(
+            "Что произошло прямо до этой реакции и что было сразу после?",
+            "What happened immediately before this reaction, and what happened right afterward?",
+        )
 
     repaired = f"{base} {tail}".strip()
-    rationale = "Снижаем директивность, добавляем валидацию и открытый вопрос по целевой методологии."
+    rationale = _l(
+        "Снижаем директивность, добавляем валидацию и открытый вопрос по целевой методологии.",
+        "Reduced directivity and added validation plus a methodology-aligned open question.",
+    )
     method_name = METHOD_NAME_BY_ID.get(method_id, method_id.upper())
     state_buckets = _build_interaction_state_buckets(interaction_state)
     if RAVRS_ENABLE and violations:
         if RAVRS_FORCE_PROTOCOL_PARITY:
-            parity_text = repaired + " Мы можем коротко отметить, что было до и что было после эпизода."
+            parity_text = repaired + _l(
+                " Мы можем коротко отметить, что было до и что было после эпизода.",
+                " We can briefly note what happened before and after the episode.",
+            )
             return RepairSuggestion(
                 should_repair=True,
                 repaired_message=parity_text,
@@ -2189,7 +2409,10 @@ def _build_repaired_message(
 
         if best_ev.get("too_vague", 0) == 1 or best_score < RAVRS_MIN_SCORE:
             best_text = fallback_candidate
-            rationale = "RAVR-S выбрал method-specific fallback из-за несоответствия кандидатов методологии/безопасности."
+            rationale = _l(
+                "RAVR-S выбрал method-specific fallback из-за несоответствия кандидатов методологии/безопасности.",
+                "RAVR-S selected the methodology-specific fallback because the candidates did not meet methodology or safety requirements.",
+            )
         else:
             rationale = (
                 f"RAVR-S v2: protocol-first ({source_type}) + state-aware rerank (0.65 method / 0.20 state / 0.15 human)."
@@ -2241,48 +2464,57 @@ def build_methodology_proof(
     evidence: List[str] = []
 
     has_question = "?" in user_message
-    has_reflection = any(k in msg for k in ["чувству", "пережива", "похоже", "кажется", "заметил"])
-    has_structure = any(k in msg for k in ["когда", "в какие моменты", "что было до", "что было после", "шаг"])
-    has_directive = any(k in msg for k in ["вы должны", "тебе нужно", "просто сделай", "немедленно"])
+    has_reflection = any(k in msg for k in [
+        "чувству", "пережива", "похоже", "кажется", "заметил",
+        "feel", "experience", "it sounds", "it seems", "notice",
+    ])
+    has_structure = any(k in msg for k in [
+        "когда", "в какие моменты", "что было до", "что было после", "шаг",
+        "when", "which moments", "before", "after", "step",
+    ])
+    has_directive = any(k in msg for k in [
+        "вы должны", "тебе нужно", "просто сделай", "немедленно",
+        "you must", "you should", "you need to", "just do", "immediately",
+    ])
 
     if has_question:
-        satisfied.append("использован исследующий вопрос")
-        evidence.append("Реплика содержит вопросительную форму")
+        satisfied.append(_l("использован исследующий вопрос", "exploratory question used"))
+        evidence.append(_l("Реплика содержит вопросительную форму", "The utterance contains a question"))
     if has_reflection:
-        satisfied.append("присутствует отражение/валидация")
-        evidence.append("Реплика содержит маркеры валидации переживаний")
+        satisfied.append(_l("присутствует отражение/валидация", "reflection or validation present"))
+        evidence.append(_l("Реплика содержит маркеры валидации переживаний", "The utterance contains markers of validation"))
     if has_structure:
-        satisfied.append("присутствует структурирование интервенции")
-        evidence.append("Реплика содержит процессные/структурные маркеры")
+        satisfied.append(_l("присутствует структурирование интервенции", "intervention structure present"))
+        evidence.append(_l("Реплика содержит процессные/структурные маркеры", "The utterance contains process or structural markers"))
     if has_directive:
-        violations.append("директивная подача без достаточной проверки контекста")
-        evidence.append("Найдены директивные формулировки")
+        violations.append(_l("директивная подача без достаточной проверки контекста", "directive framing without sufficient context checking"))
+        evidence.append(_l("Найдены директивные формулировки", "Directive wording detected"))
 
     if ev is not None:
         if ev.open_question >= 0.5:
-            satisfied.append("достаточный уровень открытых вопросов")
+            satisfied.append(_l("достаточный уровень открытых вопросов", "sufficient use of open questions"))
         else:
-            violations.append("недостаток открытых вопросов")
+            violations.append(_l("недостаток открытых вопросов", "insufficient use of open questions"))
         if ev.safety < 0.85:
-            violations.append("риск снижения безопасности коммуникации")
+            violations.append(_l("риск снижения безопасности коммуникации", "risk of reduced conversational safety"))
         if ev.empathy < 0.4:
-            violations.append("низкая эмпатическая точность")
+            violations.append(_l("низкая эмпатическая точность", "low empathic accuracy"))
         if ev.directivity > 0.7:
-            violations.append("избыточная директивность")
+            violations.append(_l("избыточная директивность", "excessive directivity"))
 
     # Метод-специфичные мягкие сигналы
     if method_id == "cbt":
-        cbt_thought_markers = ["мысл", "убежден", "доказательств", "искажен"]
-        cbt_process_markers = ["триггер", "эпизод", "до", "после", "паник", "ощущ"]
-        cbt_step_markers = ["шаг", "план", "эксперимент", "попроб", "следующ"]
+        cbt_thought_markers = ["мысл", "убежден", "доказательств", "искажен", "thought", "belief", "evidence", "distortion"]
+        cbt_process_markers = ["триггер", "эпизод", "до", "после", "паник", "ощущ", "trigger", "episode", "before", "after", "panic", "sensation"]
+        cbt_step_markers = ["шаг", "план", "эксперимент", "попроб", "следующ", "step", "plan", "experiment", "try", "next"]
         if any(k in msg for k in cbt_thought_markers):
-            satisfied.append("есть элементы когнитивной реструктуризации")
+            satisfied.append(_l("есть элементы когнитивной реструктуризации", "cognitive restructuring elements present"))
         elif infer_category(case_id) == "panic" and (
             any(k in msg for k in cbt_process_markers) or any(k in msg for k in cbt_step_markers)
         ):
-            satisfied.append("для паники добавлен CBT-фокус на триггерах/поведенческом шаге")
+            satisfied.append(_l("для паники добавлен CBT-фокус на триггерах/поведенческом шаге", "CBT focus on panic triggers or a behavioral step present"))
         else:
-            violations.append("нет явного фокуса на автоматических мыслях/искажениях")
+            violations.append(_l("нет явного фокуса на автоматических мыслях/искажениях", "no explicit focus on automatic thoughts or distortions"))
     elif method_id == "dbt":
         # Broader DBT stabilization markers to avoid false negatives on valid grounding language.
         dbt_markers = [
@@ -2295,11 +2527,20 @@ def build_methodology_proof(
             "теле",
             "дистресс",
             "успоко",
+            "accept",
+            "regulat",
+            "skill",
+            "ground",
+            "stabil",
+            "breath",
+            "body",
+            "distress",
+            "calm",
         ]
         if any(k in msg for k in dbt_markers):
-            satisfied.append("есть DBT-компонент принятия/регуляции")
+            satisfied.append(_l("есть DBT-компонент принятия/регуляции", "DBT acceptance or regulation component present"))
         else:
-            violations.append("слабый фокус на навыках DBT-регуляции")
+            violations.append(_l("слабый фокус на навыках DBT-регуляции", "insufficient focus on DBT regulation skills"))
 
         # PTSD grounding rule: trauma-related DBT cases should include grounding/stabilization cue.
         if infer_category(case_id) == "ptsd":
@@ -2313,36 +2554,49 @@ def build_methodology_proof(
                 "здесь и сейчас",
                 "дистресс",
                 "триггер",
+                "ground",
+                "stabil",
+                "breath",
+                "safe",
+                "support",
+                "body",
+                "here and now",
+                "distress",
+                "trigger",
             ]
             if any(k in msg for k in ptsd_grounding_markers):
-                satisfied.append("для PTSD добавлен grounding/стабилизация")
+                satisfied.append(_l("для PTSD добавлен grounding/стабилизация", "grounding or stabilization included for PTSD"))
             else:
-                violations.append("для PTSD не добавлен grounding/стабилизация")
+                violations.append(_l("для PTSD не добавлен grounding/стабилизация", "grounding or stabilization missing for PTSD"))
     elif method_id == "emdr":
-        if any(k in msg for k in ["воспомин", "триггер", "дистресс", "безопас"]):
-            satisfied.append("учтены EMDR-элементы триггеров/безопасности")
+        if any(k in msg for k in ["воспомин", "триггер", "дистресс", "безопас", "memory", "trigger", "distress", "safe"]):
+            satisfied.append(_l("учтены EMDR-элементы триггеров/безопасности", "EMDR trigger or safety elements included"))
         else:
-            violations.append("нет явной EMDR-фокусировки на памяти/дистрессе")
+            violations.append(_l("нет явной EMDR-фокусировки на памяти/дистрессе", "no explicit EMDR focus on memory or distress"))
     elif method_id == "aba":
-        if any(k in msg for k in ["поведен", "до этого", "после", "подкреп"]):
-            satisfied.append("учтён поведенческий анализ (ABA)")
+        if any(k in msg for k in ["поведен", "до этого", "после", "подкреп", "behavior", "before", "after", "reinforc", "antecedent", "consequence"]):
+            satisfied.append(_l("учтён поведенческий анализ (ABA)", "behavioral analysis included (ABA)"))
         else:
-            violations.append("нет операционализации поведения в терминах ABA")
+            violations.append(_l("нет операционализации поведения в терминах ABA", "behavior is not operationalized in ABA terms"))
 
     adherence = 70.0 + 5.0 * len(satisfied) - 8.0 * len(violations)
     adherence = max(0.0, min(100.0, adherence))
     recs = list(rules.get("recommended", []))[:3]
     if not recs:
-        recs = ["Уточнить цель интервенции", "Добавить валидацию", "Снизить директивность"]
+        recs = (
+            ["Clarify the intervention goal", "Add validation", "Reduce directivity"]
+            if IS_ENGLISH
+            else ["Уточнить цель интервенции", "Добавить валидацию", "Снизить директивность"]
+        )
 
     chunks: List[RavrChunk] = build_ravr_chunks(case_id, ev) if use_retrieval else []
     citations = _pick_citations(method_id, violations, satisfied, chunks) if chunks else []
     citation_valid = _citations_valid(citations, chunks) if chunks else (not need_valid_citations)
     citation_coverage, citation_precision, citation_relevance = _citation_quality(violations, citations, chunks)
     if need_valid_citations and not citation_valid:
-        violations.append("некорректные или отсутствующие RAVR-цитаты")
+        violations.append(_l("некорректные или отсутствующие RAVR-цитаты", "invalid or missing RAVR citations"))
     if not use_retrieval:
-        violations.append("отсутствует retrieval-grounding для обоснования интервенции")
+        violations.append(_l("отсутствует retrieval-grounding для обоснования интервенции", "retrieval grounding is missing for the intervention rationale"))
         adherence = max(0.0, adherence - 6.0)
 
     repair_targets = list(violations)
@@ -2383,15 +2637,15 @@ def build_methodology_proof(
 def detect_mistake_reason(ev: TurnEvaluation) -> Optional[str]:
     reasons: List[str] = []
     if ev.safety < 0.85:
-        reasons.append("формулировка снижает ощущение безопасности")
+        reasons.append(_l("формулировка снижает ощущение безопасности", "the wording reduces the sense of safety"))
     if ev.empathy < 0.4:
-        reasons.append("мало эмпатии и отражения чувств")
+        reasons.append(_l("мало эмпатии и отражения чувств", "insufficient empathy and reflection of feelings"))
     if ev.open_question < 0.3:
-        reasons.append("не хватает открытых вопросов")
+        reasons.append(_l("не хватает открытых вопросов", "insufficient use of open questions"))
     if ev.directivity > 0.7:
-        reasons.append("слишком директивная подача")
+        reasons.append(_l("слишком директивная подача", "the framing is too directive"))
     if ev.efficiency_index < 0:
-        reasons.append("ход снижает общую эффективность контакта")
+        reasons.append(_l("ход снижает общую эффективность контакта", "the turn reduces the overall effectiveness of rapport"))
     return "; ".join(reasons) if reasons else None
 
 
@@ -2428,11 +2682,14 @@ def fallback_improved_examples(mistakes: List[Dict[str, Any]]) -> List[Dict[str,
         original = str(m.get("student_message", "")).strip()
         if not original:
             continue
-        better = (
-            "Похоже, вам сейчас непросто. "
-            "Что для вас в этой ситуации самое тяжёлое в данный момент?"
+        better = _l(
+            "Похоже, вам сейчас непросто. Что для вас в этой ситуации самое тяжёлое в данный момент?",
+            "It sounds like things are difficult right now. What feels hardest about this situation at the moment?",
         )
-        why = str(m.get("reason", "")).strip() or "Так формулировка звучит мягче и поддерживает контакт."
+        why = str(m.get("reason", "")).strip() or _l(
+            "Так формулировка звучит мягче и поддерживает контакт.",
+            "This wording is gentler and better supports rapport.",
+        )
         examples.append(
             {
                 "original_replica": original,
@@ -2724,23 +2981,23 @@ def _session_turn_dataset_rows(session_id: str, session: Dict[str, Any]) -> List
 
 def _classify_violation(v: str) -> str:
     t = str(v).lower()
-    if "директив" in t:
+    if "директив" in t or "directiv" in t:
         return "directivity"
-    if "эмпат" in t or "валидац" in t:
+    if "эмпат" in t or "валидац" in t or "empath" in t or "validat" in t:
         return "empathy_validation"
-    if "открыт" in t:
+    if "открыт" in t or "open question" in t:
         return "open_question"
-    if "безопас" in t:
+    if "безопас" in t or "safety" in t or "unsafe" in t:
         return "safety"
-    if "цитат" in t:
+    if "цитат" in t or "citation" in t:
         return "citation"
-    if "когнитив" in t or "мысл" in t:
+    if "когнитив" in t or "мысл" in t or "cognit" in t or "thought" in t:
         return "cbt_focus"
-    if "dbt" in t or "регуляц" in t:
+    if "dbt" in t or "регуляц" in t or "regulat" in t or "ground" in t:
         return "dbt_focus"
-    if "emdr" in t or "дистресс" in t or "памяти" in t:
+    if "emdr" in t or "дистресс" in t or "памяти" in t or "distress" in t or "memory" in t:
         return "emdr_focus"
-    if "aba" in t or "поведен" in t:
+    if "aba" in t or "поведен" in t or "behavior" in t or "antecedent" in t:
         return "aba_focus"
     return "other"
 
@@ -3418,13 +3675,13 @@ def session_report(
             improved_examples = fallback_improved_examples(mistaken_replicas)
     except Exception as e:
         print("Session report LLM generation error:", e)
-        overall_impression = (
-            "Автоматическая генерация развёрнутого впечатления временно недоступна. "
-            "Ориентируйтесь на метрики сессии и динамику состояния пациента."
+        overall_impression = _l(
+            "Автоматическая генерация развёрнутого впечатления временно недоступна. Ориентируйтесь на метрики сессии и динамику состояния пациента.",
+            "Detailed automated feedback is temporarily unavailable. Use the session metrics and patient-state trajectory as the primary indicators.",
         )
-        recommendations = (
-            "Сфокусируйтесь на эмпатии, открытых вопросах, снижении директивности и безопасных формулировках, "
-            "а затем сравните изменения индекса эффективности и дельты состояния пациента."
+        recommendations = _l(
+            "Сфокусируйтесь на эмпатии, открытых вопросах, снижении директивности и безопасных формулировках, а затем сравните изменения индекса эффективности и дельты состояния пациента.",
+            "Focus on empathy, open questions, reduced directivity, and safe wording, then compare changes in efficiency and patient-state deltas.",
         )
         improved_examples = fallback_improved_examples(mistaken_replicas)
 
