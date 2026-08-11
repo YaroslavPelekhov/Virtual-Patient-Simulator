@@ -119,6 +119,7 @@ Required text-mode variables:
 ```env
 TELEGRAM_BOT_TOKEN=your_bot_token
 BACKEND_URL=http://127.0.0.1:8000
+BACKEND_URL_EN=http://127.0.0.1:8001
 ```
 
 Optional SaluteSpeech variables:
@@ -128,12 +129,16 @@ SALUTESPEECH_AUTH_KEY=your_key
 SALUTESPEECH_SCOPE=SALUTE_SPEECH_PERS
 SALUTESPEECH_VERIFY_SSL=1
 SALUTESPEECH_STT_MODEL=general
+SALUTESPEECH_STT_MODEL_EN=general
 SALUTESPEECH_STT_AUDIO_ENCODING=OGG_OPUS
 SALUTESPEECH_STT_SAMPLE_RATE=48000
 SALUTESPEECH_STT_CHANNELS=1
 SALUTESPEECH_TTS_VOICE=Nec_24000
+SALUTESPEECH_TTS_VOICE_EN=Nec_24000
 SALUTESPEECH_TTS_FORMAT=opus
 ```
+
+`BACKEND_URL` serves the Russian edition and `BACKEND_URL_EN` serves the English edition. The bot presents a language selector on `/start` and keeps the two session namespaces separate. The English speech model and voice variables are optional overrides; when omitted, the default speech settings are reused.
 
 ## Secret Handling
 

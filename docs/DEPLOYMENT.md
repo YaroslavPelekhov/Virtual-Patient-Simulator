@@ -114,14 +114,16 @@ Enable HTTPS before connecting the Telegram bot or collecting any session data.
 
 ## 4. Telegram Bot Service
 
-Create `bot/.env` from the example and set the public HTTPS backend URL.
+Create `bot/.env` from the example and set both local backend URLs.
 
 ```env
 TELEGRAM_BOT_TOKEN=your_token
-BACKEND_URL=https://training.example.org
+BACKEND_URL=http://127.0.0.1:8000
+BACKEND_URL_EN=http://127.0.0.1:8001
 ```
 
 Run the bot as a second supervised service under the same unprivileged account. Do not place the token directly in the unit file or command line.
+Only one polling service should use a Telegram bot token. The bilingual bot routes Russian and English sessions to their respective local backend services.
 
 ## 5. Required Hardening
 

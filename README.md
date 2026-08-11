@@ -135,13 +135,14 @@ pip install -r requirements.txt
 cp .env.example .env
 ```
 
-Set `TELEGRAM_BOT_TOKEN` and `BACKEND_URL` in `bot/.env`, then run:
+Set `TELEGRAM_BOT_TOKEN`, `BACKEND_URL`, and `BACKEND_URL_EN` in `bot/.env`, then run:
 
 ```bash
 python bot.py
 ```
 
 Voice messages require `SALUTESPEECH_AUTH_KEY`. Text mode works without speech credentials.
+The same bot supports English and Russian. `/start` opens the language selector; each language uses its own backend and session namespace.
 
 ## Core Workflow
 
