@@ -211,6 +211,14 @@ class MainUtilsTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             backend_main.llm_chat_completions(provider="unknown_provider", messages=msgs, temperature=0.1, max_tokens=8)
 
+    def test_patient_generation_uses_provider_default_model(self) -> None:
+        messages = [{"role": "user", "content": "hello"}]
+        with patch.object(backend_main, "llm_chat_completions", return_value="ok") as mocked:
+            result = backend_main.call_llm_chat(messages, provider="openai")
+
+        self.assertEqual(result, "ok")
+        self.assertIsNone(mocked.call_args.kwargs["model"])
+
 
 if __name__ == "__main__":
     unittest.main()

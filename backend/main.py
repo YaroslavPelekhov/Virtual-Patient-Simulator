@@ -1178,7 +1178,7 @@ def call_llm_chat(messages: List[Dict[str, str]], provider: Optional[str] = None
         temperature=0.8,
         max_tokens=300,
         top_p=None,
-        model=GIGACHAT_MODEL,
+        model=None,
     )
 
 
