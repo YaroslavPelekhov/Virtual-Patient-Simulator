@@ -9,6 +9,14 @@ cp bot/.env.example bot/.env
 
 Both `.env` files are ignored by Git.
 
+For browser access, configure allowed origins as a comma-separated list:
+
+```env
+CORS_ALLOW_ORIGINS=http://localhost:8080,http://127.0.0.1:8080
+```
+
+Use the exact HTTPS origin in production. The default `*` is retained only for backward-compatible local development.
+
 ## Backend Provider Selection
 
 Set `LLM_PROVIDER` to one of the supported values:

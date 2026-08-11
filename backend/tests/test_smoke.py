@@ -23,6 +23,11 @@ class BackendSmokeTests(unittest.TestCase):
         self.assertIn("category_key", first)
         self.assertIn("methodology_id", first)
 
+    def test_health_endpoint(self) -> None:
+        resp = self.client.get("/api/health")
+        self.assertEqual(resp.status_code, 200)
+        self.assertEqual(resp.json(), {"status": "ok"})
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -106,7 +106,7 @@ server {
 }
 ```
 
-The current development frontend defines `apiBase` in `frontend/script.js`. Set it to the public API origin or adapt it to use same-origin requests before deployment.
+The frontend uses same-origin API requests outside local development, so the reverse proxy can serve the UI and `/api/` from one public origin.
 
 Enable HTTPS before connecting the Telegram bot or collecting any session data.
 

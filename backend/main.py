@@ -85,6 +85,11 @@ RAVRS_CANDIDATE_TEMPERATURE = float(os.getenv("RAVRS_CANDIDATE_TEMPERATURE", "0.
 RAVRS_EVAL_TEMPERATURE = float(os.getenv("RAVRS_EVAL_TEMPERATURE", "0.2"))
 RAVRS_FORCE_PROTOCOL_PARITY = os.getenv("RAVRS_FORCE_PROTOCOL_PARITY", "0") not in ("0", "false", "False", "no", "NO")
 RAVRS_ALWAYS_REPAIR = os.getenv("RAVRS_ALWAYS_REPAIR", "0") not in ("0", "false", "False", "no", "NO")
+CORS_ALLOW_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv("CORS_ALLOW_ORIGINS", "*").split(",")
+    if origin.strip()
+] or ["*"]
 
 # Token cache (in-memory)
 _token_cache: Dict[str, Any] = {"access_token": None, "expires_at": 0.0}
@@ -2927,8 +2932,8 @@ app = FastAPI(title="Virtual Patient Simulator (Teacher Mode)")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
+    allow_origins=CORS_ALLOW_ORIGINS,
+    allow_credentials="*" not in CORS_ALLOW_ORIGINS,
     allow_methods=["*"],
     allow_headers=["*"],
 )
@@ -2936,6 +2941,11 @@ app.add_middleware(
 init_sessions_db()
 migrate_legacy_sessions_json_if_needed()
 load_sessions_from_db()
+
+
+@app.get("/api/health")
+def health_check():
+    return {"status": "ok"}
 
 
 @app.get("/api/cases", response_model=List[CasePublic])

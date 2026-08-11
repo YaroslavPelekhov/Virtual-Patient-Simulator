@@ -1,4 +1,5 @@
-const apiBase = "http://localhost:8000";
+const isLocalDevelopment = ["localhost", "127.0.0.1"].includes(window.location.hostname);
+const apiBase = window.VP_API_BASE || (isLocalDevelopment ? "http://localhost:8000" : window.location.origin);
 
 let sessionId = localStorage.getItem("vp_session_id") || null;
 let currentCaseId = null;

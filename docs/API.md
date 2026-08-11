@@ -8,6 +8,10 @@ Default development base URL:
 http://127.0.0.1:8000
 ```
 
+### `GET /api/health`
+
+Returns `{"status":"ok"}` when the application process is ready to serve requests.
+
 ## Cases
 
 ### `GET /api/cases`
